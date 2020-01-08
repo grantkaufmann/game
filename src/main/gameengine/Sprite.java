@@ -1,27 +1,37 @@
 package main.gameengine;
 
+import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.geometry.Rectangle2D;
+
+import java.awt.desktop.SystemEventListener;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.Node;
+import main.TestGame;
 
 public class Sprite
 {
     public Image image;
+    public Canvas canvas;
+    public GraphicsContext gc;
     public Node node;
     public List animations = new ArrayList<>();
-    private double positionX;
-    private double positionY;    
+    public double positionX;
+    public double positionY;
     public double velocityX;
     public double velocityY;
-    private double width;
-    private double height;
+    public double width;
+    public double height;
 
     public Sprite()
     {
+        Canvas canvas = new Canvas();
     	System.out.println("Sprite");
+        setNode(canvas);
+        this.canvas = canvas;
+        this.gc = canvas.getGraphicsContext2D();
         positionX = 0;
         positionY = 0;    
         velocityX = 0;
@@ -33,12 +43,14 @@ public class Sprite
         image = i;
         width = i.getWidth();
         height = i.getHeight();
+        canvas.setWidth(width);
+        canvas.setWidth(height);
     }
 
     public void setImage(String filename)
     {
-        Image i = new Image(filename);
-        setImage(i);
+       Image i = new Image(filename);
+       setImage(i);
     }
 
     public void setPosition(double x, double y)
@@ -97,4 +109,10 @@ public class Sprite
     public Node getNode() {
     	return node;
     }
+
+    public void initialize() {}
+
+    public void handleUpdate() {}
+
+    public void handleRender() {}
 }

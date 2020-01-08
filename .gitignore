@@ -1,5 +1,9 @@
 /bin/
 
+# Idea
+.idea
+game.iml
+
 # Mac OS X
 .DS_Store
 .Spotlight-V100

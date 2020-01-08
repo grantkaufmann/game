@@ -29,7 +29,7 @@ public abstract class Game {
 	
 	private Scene gameSurface;
 	private Group sceneNodes;
-    private final SpriteManager spriteManager = new SpriteManager();	
+    public final SpriteManager spriteManager = new SpriteManager();
 	
     public Game(final int fps, final String title) {
         framesPerSecond = fps;
@@ -121,13 +121,9 @@ public abstract class Game {
     }
     
     protected void updateSprites() {
-        for (Sprite sprite:spriteManager.getAllSprites()){
-        	handleUpdate(sprite);
-        }
+        spriteManager.handleUpdate();
     }
-    
-    protected void handleUpdate(Sprite sprite) {}
-    
+
     public void checkCollisions() {}
     protected void cleanupSprites() {
         spriteManager.cleanupSprites();
@@ -194,15 +190,5 @@ public abstract class Game {
         float fps = tracker.getAverageFPS();
         tracker.resetAverageFPS();
         return fps;
-    }
-    
-
-    /**
-     * Returns the sprite manager containing the sprite objects to
-     * manipulate in the game.
-     * @return SpriteManager The sprite manager.
-     */
-    protected SpriteManager getSpriteManager() {
-        return spriteManager;
     }
 }
