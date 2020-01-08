@@ -28,7 +28,13 @@ public class SpriteManager {
     public void listenKeyEvents(Scene scene) {
         scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
             for (Sprite gameActor : GAME_ACTORS) {
-                gameActor.handleKeyEvent(key.getCode());
+                gameActor.handleKeyEvent(key.getCode(), true);
+            }
+        });
+
+        scene.addEventHandler(KeyEvent.KEY_RELEASED, (key) -> {
+            for (Sprite gameActor : GAME_ACTORS) {
+                gameActor.handleKeyEvent(key.getCode(), false);
             }
         });
     }
