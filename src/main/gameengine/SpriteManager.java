@@ -28,8 +28,8 @@ public class SpriteManager {
     public void addSprites(Sprite... sprites) {
         GAME_ACTORS.addAll(Arrays.asList(sprites));
 
-        for (int i = 0; i < GAME_ACTORS.size(); i++) {
-            sprites[i].initialize();
+        for (Sprite gameActor : GAME_ACTORS) {
+            gameActor.initialize();
         }
     }
 
@@ -79,13 +79,23 @@ public class SpriteManager {
         CHECK_COLLISION_LIST.addAll(GAME_ACTORS);
     }
 
+    public void checkCollisions() {
+        for (Sprite spriteA : GAME_ACTORS) {
+            for (Sprite spriteB : GAME_ACTORS) {
+                if (spriteA != spriteB && spriteA.intersects(spriteB)) {
+                    spriteA.handleCollisions(spriteB);
+                }
+            }
+        }
+    }
+
     public void handleUpdate() {
         // System.out.println(GAME_ACTORS.size());
-        for (int i = 0; i < GAME_ACTORS.size(); i++) {
-            GAME_ACTORS.get(i).handleUpdate();
+        for (Sprite gameActor : GAME_ACTORS) {
+            gameActor.handleUpdate();
         }
-        for (int i = 0; i < GAME_ACTORS.size(); i++) {
-            GAME_ACTORS.get(i).handleRender();
+        for (Sprite gameActor : GAME_ACTORS) {
+            gameActor.handleRender();
         }
     }
 

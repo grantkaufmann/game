@@ -124,7 +124,9 @@ public abstract class Game {
         spriteManager.handleUpdate();
     }
 
-    public void checkCollisions() {}
+    public void checkCollisions() {
+    	spriteManager.checkCollisions();
+	}
     protected void cleanupSprites() {
         spriteManager.cleanupSprites();
     }

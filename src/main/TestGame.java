@@ -20,18 +20,17 @@ public class TestGame extends Game {
 		stage.setTitle(getWindowTitle());
 		setSceneNodes(new Group());
 		setGameSurface(new Scene(getSceneNodes(), 800, 600));
-
 		stage.setScene(getGameSurface());
-		
-		// Ball b = new Ball(50, Color.PURPLE);
-		// spriteManager.addSprites(b);
-		// getSceneNodes().getChildren().add(b.node);
+
+
+		Ball b = new Ball(50, Color.PURPLE);
+		spriteManager.addSprites(b);
+		getSceneNodes().getChildren().add(b.node);
 		
 
-		Puppy puppy = new Puppy();
+		Puppy puppy = new Puppy(100, 400);
 		spriteManager.addSprites(puppy);
-
-		// puppy.render(canvas.getGraphicsContext2D());
+		getSceneNodes().getChildren().add(puppy.node);
 		
 
 		stage.show();
