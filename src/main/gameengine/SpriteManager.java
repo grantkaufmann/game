@@ -1,5 +1,10 @@
 package main.gameengine;
 
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+
 import java.util.*;
 
 public class SpriteManager {
@@ -21,12 +26,44 @@ public class SpriteManager {
         return GAME_ACTORS;
     }
 
+    public void listenKeyEvents(Scene scene) {
+        scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+            for (Sprite gameActor : GAME_ACTORS) {
+                gameActor.handleKeyEvent(key.getCode(), true);
+            }
+        });
+
+        scene.addEventHandler(KeyEvent.KEY_RELEASED, (key) -> {
+            for (Sprite gameActor : GAME_ACTORS) {
+                gameActor.handleKeyEvent(key.getCode(), false);
+            }
+        });
+    }
+
+    public void listenMouseEvents(Scene scene) {
+        scene.addEventHandler(MouseEvent.MOUSE_PRESSED, (mouseEvent) -> {
+            for (Sprite gameActor : GAME_ACTORS) {
+                gameActor.handleMouseEvent(mouseEvent, true);
+            }
+        });
+
+        scene.addEventHandler(MouseEvent.MOUSE_RELEASED, (mouseEvent) -> {
+            for (Sprite gameActor : GAME_ACTORS) {
+                gameActor.handleMouseEvent(mouseEvent, false);
+            }
+        });
+    }
+
     /**
      * VarArgs of sprite objects to be added to the game.
      * @param sprites
      */
     public void addSprites(Sprite... sprites) {
         GAME_ACTORS.addAll(Arrays.asList(sprites));
+
+        for (Sprite gameActor : GAME_ACTORS) {
+            gameActor.initialize();
+        }
     }
 
     /**
@@ -75,6 +112,26 @@ public class SpriteManager {
         CHECK_COLLISION_LIST.addAll(GAME_ACTORS);
     }
 
+    public void checkCollisions() {
+        for (Sprite spriteA : GAME_ACTORS) {
+            for (Sprite spriteB : GAME_ACTORS) {
+                if (spriteA != spriteB && spriteA.intersects(spriteB)) {
+                    spriteA.handleCollisions(spriteB);
+                }
+            }
+        }
+    }
+
+    public void handleUpdate() {
+        // System.out.println(GAME_ACTORS.size());
+        for (Sprite gameActor : GAME_ACTORS) {
+            gameActor.handleUpdate();
+        }
+        for (Sprite gameActor : GAME_ACTORS) {
+            gameActor.handleRender();
+        }
+    }
+
     /**
      * Removes sprite objects and nodes from all
      * temporary collections such as:
@@ -85,9 +142,9 @@ public class SpriteManager {
     public void cleanupSprites() {
 
         // remove from actors list
-        GAME_ACTORS.removeAll(CLEAN_UP_SPRITES);
+        // GAME_ACTORS.removeAll(CLEAN_UP_SPRITES);
 
         // reset the clean up sprites
-        CLEAN_UP_SPRITES.clear();
+        // CLEAN_UP_SPRITES.clear();
     }
 }
