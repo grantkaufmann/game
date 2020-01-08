@@ -19,6 +19,7 @@ public class TestGame extends Game {
 		setGameSurface(new Scene(getSceneNodes(), 800, 600));
 		stage.setScene(getGameSurface());
 		spriteManager.listenKeyEvents(getGameSurface());
+		spriteManager.listenMouseEvents(getGameSurface());
 
 
 		Ball b = new Ball(50, Color.PURPLE);

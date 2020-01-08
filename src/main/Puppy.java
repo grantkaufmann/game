@@ -2,6 +2,8 @@ package main;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import main.gameengine.Sprite;
 
 public class Puppy extends Sprite {

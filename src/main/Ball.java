@@ -1,8 +1,11 @@
 package main;
 
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import main.gameengine.Sprite;
+
+import java.util.Random;
 
 public class Ball extends Sprite {
     public Ball(double radius, Color fill) {
@@ -27,5 +30,21 @@ public class Ball extends Sprite {
 
     public void handleCollisions(Sprite spriteB) {
 
+    }
+
+    public void handleMouseEvent(MouseEvent mouseEvent, boolean isPressed) {
+        if (isPressed) {
+            System.out.println("Mouse Button: " + mouseEvent.getButton());
+            System.out.println("Mouse Position: " + mouseEvent.getX() + " - " + mouseEvent.getY());
+
+            if (intersects(mouseEvent.getX(), mouseEvent.getY())) {
+                Random rand = new Random();
+                int r = rand.nextInt(255);
+                int g = rand.nextInt(255);
+                int b = rand.nextInt(255);
+                gc.setFill(Color.rgb(r, g, b));
+                gc.fillOval(0, 0, width, height);
+            }
+        }
     }
 }

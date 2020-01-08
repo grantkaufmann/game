@@ -3,6 +3,7 @@ package main.gameengine;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 import java.util.*;
 
@@ -35,6 +36,20 @@ public class SpriteManager {
         scene.addEventHandler(KeyEvent.KEY_RELEASED, (key) -> {
             for (Sprite gameActor : GAME_ACTORS) {
                 gameActor.handleKeyEvent(key.getCode(), false);
+            }
+        });
+    }
+
+    public void listenMouseEvents(Scene scene) {
+        scene.addEventHandler(MouseEvent.MOUSE_PRESSED, (mouseEvent) -> {
+            for (Sprite gameActor : GAME_ACTORS) {
+                gameActor.handleMouseEvent(mouseEvent, true);
+            }
+        });
+
+        scene.addEventHandler(MouseEvent.MOUSE_RELEASED, (mouseEvent) -> {
+            for (Sprite gameActor : GAME_ACTORS) {
+                gameActor.handleMouseEvent(mouseEvent, false);
             }
         });
     }

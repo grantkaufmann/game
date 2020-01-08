@@ -7,6 +7,7 @@ import javafx.geometry.Rectangle2D;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 import java.awt.*;
@@ -102,6 +103,11 @@ public class Sprite
     {
         return s.node.getBoundsInParent().intersects(node.getBoundsInParent());
     }
+
+    public boolean intersects(double x, double y)
+    {
+        return node.getBoundsInParent().intersects(x, y, 1, 1);
+    }
     
     public String toString()
     {
@@ -146,4 +152,6 @@ public class Sprite
     public void handleCollisions(Sprite spriteB) {}
 
     public void handleKeyEvent(KeyCode keyCode, boolean isPressed) {}
+
+    public void handleMouseEvent(MouseEvent mouseEvent, boolean isPressed) {}
 }
