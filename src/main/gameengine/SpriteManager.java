@@ -6,6 +6,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class SpriteManager {
     /** All the sprite objects currently in play */
@@ -60,8 +61,12 @@ public class SpriteManager {
      */
     public void addSprites(Sprite... sprites) {
         GAME_ACTORS.addAll(Arrays.asList(sprites));
+    }
 
-        for (Sprite gameActor : GAME_ACTORS) {
+    public void initializeSprites() {
+        List<Sprite> SpritesWithoutNulls = GAME_ACTORS.stream().filter(p -> p.node.getScene() != null).collect(Collectors.toList());
+
+        for (Sprite gameActor : SpritesWithoutNulls) {
             gameActor.initialize();
         }
     }
@@ -113,8 +118,10 @@ public class SpriteManager {
     }
 
     public void checkCollisions() {
-        for (Sprite spriteA : GAME_ACTORS) {
-            for (Sprite spriteB : GAME_ACTORS) {
+        List<Sprite> SpritesWithoutNulls = GAME_ACTORS.stream().filter(p -> p.node.getScene() != null).collect(Collectors.toList());
+
+        for (Sprite spriteA : SpritesWithoutNulls) {
+            for (Sprite spriteB : SpritesWithoutNulls) {
                 if (spriteA != spriteB && spriteA.intersects(spriteB)) {
                     spriteA.handleCollisions(spriteB);
                 }
@@ -124,10 +131,12 @@ public class SpriteManager {
 
     public void handleUpdate() {
         // System.out.println(GAME_ACTORS.size());
-        for (Sprite gameActor : GAME_ACTORS) {
+        List<Sprite> SpritesWithoutNulls = GAME_ACTORS.stream().filter(p -> p.node.getScene() != null).collect(Collectors.toList());
+
+        for (Sprite gameActor : SpritesWithoutNulls) {
             gameActor.handleUpdate();
         }
-        for (Sprite gameActor : GAME_ACTORS) {
+        for (Sprite gameActor : SpritesWithoutNulls) {
             gameActor.handleRender();
         }
     }

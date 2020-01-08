@@ -2,12 +2,9 @@ package main.gameengine;
 
 import com.sun.javafx.perf.PerformanceTracker;
 
-import javafx.animation.Animation;
-import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -15,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import main.gameengine.Sprite;
 
 public abstract class Game {
 	private static Timeline gameLoop;
@@ -28,6 +24,7 @@ public abstract class Game {
 	private static PerformanceTracker tracker;
 	
 	private Scene gameSurface;
+	public SceneManager stageManager;
 	private Group sceneNodes;
     public final SpriteManager spriteManager = new SpriteManager();
 	
@@ -166,7 +163,6 @@ public abstract class Game {
 	
 	protected void setGameSurface(Scene gameSurface) {
 		tracker = PerformanceTracker.getSceneTracker(gameSurface);
-		
 		this.gameSurface = gameSurface;
 	}
 	
