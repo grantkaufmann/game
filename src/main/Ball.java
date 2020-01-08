@@ -8,10 +8,13 @@ import main.gameengine.Sprite;
 import java.util.Random;
 
 public class Ball extends Sprite {
-    public Ball(double radius, Color fill) {
+
+    public Ball(double radius, Color fill, int x, int y) {
         setCanvasSize(radius * 2, radius * 2);
+        positionX = x;
+        positionY = y;
         gc.setFill(fill);
-        gc.fillOval(0, 0, radius * 2, radius * 2);
+        gc.fillRect(0, 0, radius * 2, radius * 2);
     }
 
     public void initialize() {
@@ -29,7 +32,12 @@ public class Ball extends Sprite {
     }
 
     public void handleCollisions(Sprite spriteB) {
+        System.out.println(id + " collided with2 " + spriteB.id);
 
+        setVelocity(velocityX * -1, velocityY * -1);
+
+        // spriteB.velocityX = spriteB.velocityX * -1;
+        // spriteB.velocityY = spriteB.velocityY * -1;
     }
 
     public void handleMouseEvent(MouseEvent mouseEvent, boolean isPressed) {

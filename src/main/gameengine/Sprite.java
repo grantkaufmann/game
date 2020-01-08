@@ -73,8 +73,8 @@ public class Sprite
 
     public void setPosition(double x, double y)
     {
-        positionX = x;
-        positionY = y;
+        node.setTranslateX(positionX += velocityX);
+        node.setTranslateY(positionY += velocityY);
     }
 
     public void setVelocity(double x, double y)
@@ -87,11 +87,6 @@ public class Sprite
     {
         velocityX += x;
         velocityY += y;
-    }
-
-    public void render(GraphicsContext gc)
-    {
-        gc.drawImage( image, positionX, positionY );
     }
 
     public Rectangle2D getBoundary()
@@ -131,16 +126,21 @@ public class Sprite
     }
 
     public void collidesWall() {
-        if (node.getTranslateX() > (node.getScene().getWidth() -
-                node.getBoundsInParent().getWidth()) ||
-                node.getTranslateX() < 0) {
-            velocityX = velocityX * -1;
+        try {
+            if (node.getTranslateX() > (node.getScene().getWidth() -
+                    node.getBoundsInParent().getWidth()) ||
+                    node.getTranslateX() < 0) {
+                velocityX = velocityX * -1;
+            }
+            if (node.getTranslateY() > node.getScene().getHeight() -
+                    node.getBoundsInParent().getHeight() ||
+                    node.getTranslateY() < 0) {
+                velocityY = velocityY * -1;
+            }
+        } catch (Exception e) {
+            // System.out.printw
         }
-        if (node.getTranslateY() > node.getScene().getHeight() -
-                node.getBoundsInParent().getHeight() ||
-                node.getTranslateY() < 0) {
-            velocityY = velocityY * -1;
-        }
+
     }
 
     public void initialize() {}
