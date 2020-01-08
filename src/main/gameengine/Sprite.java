@@ -10,8 +10,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
-import java.awt.*;
-import java.awt.desktop.SystemEventListener;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.Node;
