@@ -6,16 +6,26 @@ import main.gameengine.Sprite;
 
 public class Ball extends Sprite {
     public Ball(double radius, Color fill) {
-    	super();
-        Circle sphere = new Circle();
-        sphere.setCenterX(radius);
-        sphere.setCenterY(radius);
-        sphere.setRadius(radius);
-        sphere.setFill(fill);
-        node = sphere;
+        setCanvasSize(radius * 2, radius * 2);
+        gc.setFill(fill);
+        gc.fillOval(0, 0, radius * 2, radius * 2);
+    }
+
+    public void initialize() {
+        setID(ID.Ball);
         setVelocity(1, 1);
     }
-    
-    
 
+    public void handleUpdate() {
+        updatePosition();
+        collidesWall();
+    }
+
+    public void handleRender() {
+
+    }
+
+    public void handleCollisions(Sprite spriteB) {
+
+    }
 }

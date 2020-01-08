@@ -27,6 +27,10 @@ public class SpriteManager {
      */
     public void addSprites(Sprite... sprites) {
         GAME_ACTORS.addAll(Arrays.asList(sprites));
+
+        for (Sprite gameActor : GAME_ACTORS) {
+            gameActor.initialize();
+        }
     }
 
     /**
@@ -75,6 +79,26 @@ public class SpriteManager {
         CHECK_COLLISION_LIST.addAll(GAME_ACTORS);
     }
 
+    public void checkCollisions() {
+        for (Sprite spriteA : GAME_ACTORS) {
+            for (Sprite spriteB : GAME_ACTORS) {
+                if (spriteA != spriteB && spriteA.intersects(spriteB)) {
+                    spriteA.handleCollisions(spriteB);
+                }
+            }
+        }
+    }
+
+    public void handleUpdate() {
+        // System.out.println(GAME_ACTORS.size());
+        for (Sprite gameActor : GAME_ACTORS) {
+            gameActor.handleUpdate();
+        }
+        for (Sprite gameActor : GAME_ACTORS) {
+            gameActor.handleRender();
+        }
+    }
+
     /**
      * Removes sprite objects and nodes from all
      * temporary collections such as:
@@ -85,9 +109,9 @@ public class SpriteManager {
     public void cleanupSprites() {
 
         // remove from actors list
-        GAME_ACTORS.removeAll(CLEAN_UP_SPRITES);
+        // GAME_ACTORS.removeAll(CLEAN_UP_SPRITES);
 
         // reset the clean up sprites
-        CLEAN_UP_SPRITES.clear();
+        // CLEAN_UP_SPRITES.clear();
     }
 }
