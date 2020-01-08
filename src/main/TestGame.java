@@ -2,12 +2,9 @@ package main;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import main.gameengine.Game;
-import main.gameengine.Sprite;
 
 public class TestGame extends Game {
 	
@@ -21,6 +18,7 @@ public class TestGame extends Game {
 		setSceneNodes(new Group());
 		setGameSurface(new Scene(getSceneNodes(), 800, 600));
 		stage.setScene(getGameSurface());
+		spriteManager.listenKeyEvents(getGameSurface());
 
 
 		Ball b = new Ball(50, Color.PURPLE);

@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.geometry.Rectangle2D;
 
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 
 import java.awt.*;
@@ -142,4 +143,6 @@ public class Sprite
     public void handleRender() {}
 
     public void handleCollisions(Sprite spriteB) {}
+
+    public void handleKeyEvent(KeyCode keyCode) {}
 }

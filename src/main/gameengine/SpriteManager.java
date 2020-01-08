@@ -1,5 +1,9 @@
 package main.gameengine;
 
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+
 import java.util.*;
 
 public class SpriteManager {
@@ -19,6 +23,14 @@ public class SpriteManager {
     /** */
     public List<Sprite> getAllSprites() {
         return GAME_ACTORS;
+    }
+
+    public void listenKeyEvents(Scene scene) {
+        scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+            for (Sprite gameActor : GAME_ACTORS) {
+                gameActor.handleKeyEvent(key.getCode());
+            }
+        });
     }
 
     /**

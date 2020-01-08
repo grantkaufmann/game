@@ -1,6 +1,6 @@
 package main;
 
-import javafx.scene.paint.Color;
+import javafx.scene.input.KeyCode;
 import main.gameengine.Sprite;
 
 public class Puppy extends Sprite {
@@ -36,5 +36,11 @@ public class Puppy extends Sprite {
 
         spriteB.velocityX = spriteB.velocityX * -1;
         spriteB.velocityY = spriteB.velocityY * -1;
+    }
+
+    public void handleKeyEvent(KeyCode keyCode) {
+        if(keyCode == KeyCode.ENTER) {
+            System.out.println("You pressed: " + keyCode);
+        }
     }
 }
