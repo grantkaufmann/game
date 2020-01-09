@@ -2,5 +2,7 @@ package main;
 
 public enum ID {
     Puppy(),
-    Ball()
+    Ball(),
+    Coin(),
+    Rock()
 }

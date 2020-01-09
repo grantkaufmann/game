@@ -12,25 +12,19 @@ import javafx.scene.canvas.Canvas;
 public class Main extends Application {
 //	Game game = new Game(60, "The Game");
 	TestGame tgame = new TestGame();
+	GrantGame ggame = new GrantGame();
 	
 	@Override 
 	public void start(Stage stage) {
-//		stage.setTitle("Hello, World!");
-//		stage.show();
-//		stage.setTitle( "Timeline Example" );
-//		 
-//	    Group root = new Group();
-//	    Scene theScene = new Scene( root );
-//	    stage.setScene( theScene );
-//	 
-//	    Canvas canvas = new Canvas( 512, 512 );
-//	    root.getChildren().add( canvas );
+	
 
-//		
-
-		tgame.setDebugMode(true);
-		tgame.initialize(stage);
-		tgame.start();
+//		tgame.setDebugMode(true);
+//		tgame.initialize(stage);
+//		tgame.start();
+		
+		ggame.setDebugMode(true);
+		ggame.initialize(stage);
+		ggame.start();
 		
 	   } 
    public static void main(String args[]){ 

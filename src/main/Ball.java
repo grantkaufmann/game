@@ -3,7 +3,7 @@ package main;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import main.gameengine.Sprite;
+import main.gameengine.nodes.Sprite;
 
 import java.util.Random;
 
@@ -19,7 +19,7 @@ public class Ball extends Sprite {
 
     public void initialize() {
         setID(ID.Ball);
-        setVelocity(1, 1);
+//        setVelocity(1, 1);
     }
 
     public void handleUpdate() {

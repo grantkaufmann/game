@@ -31,16 +31,17 @@ public class SceneManager {
     }
 
     public void setScene(Group group) {
-        System.out.println();
-        System.out.println("Setting scene");
+//        System.out.println();
+//        System.out.println("Setting scene");
         Scene scene = new Scene(group, 800, 600);
         game.setSceneNodes(group);
         game.setGameSurface(scene);
         stage.setScene(scene);
         game.spriteManager.initializeSprites();
-        scene.addEventHandler(KeyEvent.KEY_RELEASED, (key) -> {
-            System.out.println("Setting new group");
-            setScene(GAME_GROUPS.get(currentStage = currentStage + 1));
-        });
+        game.spriteManager.listenKeyEvents(scene);
+//        scene.addEventHandler(KeyEvent.KEY_RELEASED, (key) -> {
+//            System.out.println("Setting new group");
+//            setScene(GAME_GROUPS.get(currentStage = currentStage + 1));
+//        });
     }
 }

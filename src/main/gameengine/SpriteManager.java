@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import main.gameengine.nodes.Sprite;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -125,8 +126,16 @@ public class SpriteManager {
                 if (spriteA != spriteB && spriteA.intersects(spriteB)) {
                     spriteA.handleCollisions(spriteB);
                 }
+                if (!spriteA.getActive()) {
+                	addSpritesToBeRemoved(spriteA);
+                	main.gameengine.Game.getSceneNodes().getChildren().remove(spriteA.getNode());
+                }
             }
         }
+        
+//        List<Sprite> spritsToDestroy = SpritesWithoutNulls.stream().filter(p -> !p.getActive()).forEach(() => );
+        
+//        System.out.println();
     }
 
     public void handleUpdate() {
@@ -151,9 +160,11 @@ public class SpriteManager {
     public void cleanupSprites() {
 
         // remove from actors list
-        // GAME_ACTORS.removeAll(CLEAN_UP_SPRITES);
+//    	System.out.println(main.gameengine.Game.getSceneNodes().getChildren());
+    	
+//    	main.gameengine.Game.getSceneNodes().getChildren().removeAll(CLEAN_UP_SPRITES.stream().map((i) -> i.node).collect(Collectors.toList()));
+         GAME_ACTORS.removeAll(CLEAN_UP_SPRITES);
 
-        // reset the clean up sprites
-        // CLEAN_UP_SPRITES.clear();
+         CLEAN_UP_SPRITES.clear();
     }
 }

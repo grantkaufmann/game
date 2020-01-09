@@ -1,13 +1,13 @@
 package main;
 
-import main.gameengine.Sprite;
-
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 //import puzzle.Settings;
+
+import main.gameengine.nodes.Sprite;
 
 public class PuppySheet extends Sprite {
 	private boolean keypressed;

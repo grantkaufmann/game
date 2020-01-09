@@ -1,4 +1,4 @@
-package main.gameengine;
+package main.gameengine.nodes;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
@@ -24,24 +24,42 @@ public class Sprite
     public Node node;
     public ID id;
     public List animations = new ArrayList<>();
-    public double positionX;
-    public double positionY;
-    public double velocityX;
-    public double velocityY;
+    public double positionX = 0;
+    public double positionY = 0;
+    public double velocityX = 0;
+    public double velocityY = 0;
     public double width;
     public double height;
+    private boolean active = true;
+    ArrayList<String> type = new ArrayList<String>();
 
     public Sprite()
     {
         Canvas canvas = new Canvas();
-    	System.out.println("Sprite");
         this.canvas = canvas;
         this.node = canvas;
         this.gc = canvas.getGraphicsContext2D();
-        positionX = 0;
-        positionY = 0;    
-        velocityX = 0;
-        velocityY = 0;
+        setType("Sprite");
+    }
+    
+    public boolean getActive() {
+    	return active;
+    }
+    
+    public void setActive(boolean active) {
+    	this.active = active;
+    }
+    
+    public ArrayList<String> getType() {
+    	return type;
+    }
+    
+    public void setType(String type) {
+    	this.type.add(type);
+    }
+    
+    public boolean isType(String type) {
+    	return this.type.contains(type);
     }
 
     public void setID(ID id) {
@@ -71,8 +89,8 @@ public class Sprite
 
     public void setPosition(double x, double y)
     {
-        node.setTranslateX(positionX += velocityX);
-        node.setTranslateY(positionY += velocityY);
+        node.setTranslateX(x += velocityX);
+        node.setTranslateY(y += velocityY);
     }
 
     public void setVelocity(double x, double y)
@@ -126,14 +144,17 @@ public class Sprite
     public void collidesWall() {
         try {
             if (node.getTranslateX() > (node.getScene().getWidth() -
-                    node.getBoundsInParent().getWidth()) ||
-                    node.getTranslateX() < 0) {
+                node.getBoundsInParent().getWidth()) ||
+                node.getTranslateX() < 0) {
+            	System.out.println(positionX);
                 velocityX = velocityX * -1;
+                setPosition(positionX, positionY);
             }
             if (node.getTranslateY() > node.getScene().getHeight() -
-                    node.getBoundsInParent().getHeight() ||
-                    node.getTranslateY() < 0) {
+                node.getBoundsInParent().getHeight() ||
+                node.getTranslateY() < 0) {
                 velocityY = velocityY * -1;
+                setPosition(positionX, positionY);
             }
         } catch (Exception e) {
             // System.out.printw

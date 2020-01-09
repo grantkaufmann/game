@@ -24,8 +24,8 @@ public abstract class Game {
 	private static PerformanceTracker tracker;
 	
 	private Scene gameSurface;
-	public SceneManager stageManager;
-	private Group sceneNodes;
+	public static SceneManager sceneManager;
+	private static Group sceneNodes;
     public final SpriteManager spriteManager = new SpriteManager();
 	
     public Game(final int fps, final String title) {
@@ -166,7 +166,7 @@ public abstract class Game {
 		this.gameSurface = gameSurface;
 	}
 	
-	public Group getSceneNodes() {
+	public static Group getSceneNodes() {
 		return sceneNodes;
 	}
 	
