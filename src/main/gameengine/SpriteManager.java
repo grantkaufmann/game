@@ -134,6 +134,20 @@ public class SpriteManager {
         CHECK_COLLISION_LIST.addAll(GAME_ACTORS);
     }
 
+    public List<Sprite> getSpriteByType(String type) {
+        List<Sprite> activeSprites = getActiveSprites();
+
+        List<Sprite> sprites = new ArrayList<>(Collections.emptyList());
+
+        for (Sprite sprite : activeSprites) {
+            if (sprite.isType(type)) {
+                sprites.add(sprite);
+            }
+        }
+
+        return sprites;
+    }
+
     public void checkCollisions() {
         List<Sprite> activeSprites = getActiveSprites();
 
@@ -148,20 +162,19 @@ public class SpriteManager {
                 }
             }
         }
-        
-//        List<Sprite> spritsToDestroy = SpritesWithoutNulls.stream().filter(p -> !p.getActive()).forEach(() => );
-        
-//        System.out.println();
     }
 
     public void handleUpdate() {
-        List<Sprite> activeSprites = getActiveSprites();
-
-        for (Sprite gameActor : activeSprites) {
-            gameActor.handleUpdate();
-        }
-        for (Sprite gameActor : activeSprites) {
-            gameActor.handleRender();
+        try {
+            List<Sprite> activeSprites = getActiveSprites();
+            for (Sprite gameActor : activeSprites) {
+                gameActor.handleUpdate();
+            }
+            for (Sprite gameActor : activeSprites) {
+                gameActor.handleRender();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
