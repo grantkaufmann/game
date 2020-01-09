@@ -1,6 +1,5 @@
 package main.gameengine;
 
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -11,36 +10,58 @@ import java.util.List;
 
 public class SceneManager {
 
-    private final static List<Group> GAME_GROUPS= new ArrayList<Group>();
+    private final static List<Level> GAME_GROUPS= new ArrayList<Level>();
 
     private Game game;
     private Stage stage;
-    private int currentStage = 0;
+    public Scene activeScene;
+    public Level activeLevel;
 
     public SceneManager(Stage stage, Game game) {
         this.stage = stage;
         this.game = game;
     }
 
-    public void addScenes(Group... groups) {
+    public void addScenes(Level... groups) {
         GAME_GROUPS.addAll(Arrays.asList(groups));
     }
 
-    public void removeScenes(Group... groups) {
+    public void removeScenes(Level... groups) {
         GAME_GROUPS.removeAll(Arrays.asList(groups));
     }
 
-    public void setScene(Group group) {
-        System.out.println();
-        System.out.println("Setting scene");
-        Scene scene = new Scene(group, 800, 600);
-        game.setSceneNodes(group);
-        game.setGameSurface(scene);
-        stage.setScene(scene);
-        game.spriteManager.initializeSprites();
-        scene.addEventHandler(KeyEvent.KEY_RELEASED, (key) -> {
-            System.out.println("Setting new group");
-            setScene(GAME_GROUPS.get(currentStage = currentStage + 1));
-        });
+    public Level getNextLevel() {
+        Level level = null;
+        for (int i = 0; i < GAME_GROUPS.size() - 1; i++) {
+            if (GAME_GROUPS.get(i).name.equals(activeLevel.name)) {
+                level = GAME_GROUPS.get(i + 1);
+            }
+        }
+        return level;
+    }
+
+    public void setScene(String groupName) {
+        for (Level group : GAME_GROUPS) {
+            if (group.name.equals(groupName)) {
+                Scene scene = new Scene(group.level, 800, 600);
+                game.setSceneNodes(group.level);
+                game.setGameSurface(scene);
+                stage.setScene(scene);
+                activeScene = scene;
+                activeLevel = group;
+                game.spriteManager.initializeSprites();
+                if (game.spriteManager.listenKeyEvents) { game.spriteManager.listenKeyEvents(scene); }
+                if (game.spriteManager.listenMouseEvents) { game.spriteManager.listenMouseEvents(scene); }
+                scene.addEventHandler(KeyEvent.KEY_RELEASED, (key) -> {
+                    if (key.getCode().toString().equals("P")) {
+                        if (getNextLevel() != null) {
+                            setScene(getNextLevel().name);
+                        } else {
+                            System.out.println("Next level does not exist");
+                        }
+                    }
+                });
+            }
+        }
     }
 }

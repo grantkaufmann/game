@@ -36,7 +36,6 @@ public class Sprite
     public Sprite()
     {
         Canvas canvas = new Canvas();
-    	System.out.println("Sprite");
         this.canvas = canvas;
         this.node = canvas;
         this.gc = canvas.getGraphicsContext2D();

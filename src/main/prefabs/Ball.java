@@ -1,8 +1,9 @@
-package main;
+package main.prefabs;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import main.ID;
 import main.gameengine.Sprite;
 
 import java.util.Random;
@@ -32,7 +33,7 @@ public class Ball extends Sprite {
     }
 
     public void handleCollisions(Sprite spriteB) {
-        System.out.println(id + " collided with2 " + spriteB.id);
+        System.out.println(id + " of " + node.getScene() + " collided with2 " + spriteB.id + " of " + node.getScene());
 
         setVelocity(velocityX * -1, velocityY * -1);
 
@@ -42,8 +43,8 @@ public class Ball extends Sprite {
 
     public void handleMouseEvent(MouseEvent mouseEvent, boolean isPressed) {
         if (isPressed) {
-            System.out.println("Mouse Button: " + mouseEvent.getButton());
-            System.out.println("Mouse Position: " + mouseEvent.getX() + " - " + mouseEvent.getY());
+            // System.out.println("Mouse Button: " + mouseEvent.getButton());
+            // System.out.println("Mouse Position: " + mouseEvent.getX() + " - " + mouseEvent.getY());
 
             if (intersects(mouseEvent.getX(), mouseEvent.getY())) {
                 Random rand = new Random();
