@@ -1,10 +1,19 @@
 package main;
 
 import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import main.gameengine.Game;
+import main.gameengine.Level;
+import main.gameengine.SceneManager;
+import main.gameengine.SpriteManager;
+import main.prefabs.Ball;
+import main.prefabs.Puppy;
+import main.scenes.Level1;
+import main.scenes.Level2;
+import main.scenes.Level3;
+
+import java.util.Random;
 
 public class TestGame extends Game {
 	
@@ -15,22 +24,17 @@ public class TestGame extends Game {
 	@Override
 	public void initialize(Stage stage) {
 		stage.setTitle(getWindowTitle());
-		setSceneNodes(new Group());
-		setGameSurface(new Scene(getSceneNodes(), 800, 600));
-		stage.setScene(getGameSurface());
-		spriteManager.listenKeyEvents(getGameSurface());
-		spriteManager.listenMouseEvents(getGameSurface());
+		stageManager = new SceneManager(stage, this);
+		spriteManager = new SpriteManager(stageManager);
 
+		spriteManager.listenKeyEvents(true);
+		spriteManager.listenMouseEvents(true);
 
-		Ball b = new Ball(50, Color.PURPLE);
-		spriteManager.addSprites(b);
-		getSceneNodes().getChildren().add(b.node);
-		
+		Level level1 = new Level1(spriteManager, stageManager);
+		Level level2 = new Level2(spriteManager, stageManager);
+		Level level3 = new Level3(spriteManager, stageManager);
 
-		Puppy puppy = new Puppy(100, 400);
-		spriteManager.addSprites(puppy);
-		getSceneNodes().getChildren().add(puppy.node);
-		
+		stageManager.setScene("level1");
 
 		stage.show();
 	}

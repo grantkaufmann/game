@@ -25,7 +25,7 @@ public class Main extends Application {
 //	 
 //	    Canvas canvas = new Canvas( 512, 512 );
 //	    root.getChildren().add( canvas );
-		
+
 //		
 
 		tgame.setDebugMode(true);
