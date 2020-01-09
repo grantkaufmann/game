@@ -5,11 +5,12 @@ import javafx.stage.Stage;
 public class Item extends Sprite {
 		
 	public Item() {
-		setType("Item");
+		setType("item");
 	}
 	
     public void handleCollisions(Sprite spriteB) {
-    	if (spriteB.isType("Player")) {
+//    	System.out.println(spriteB.getType());
+    	if (spriteB.isType("player")) {
     		setActive(false);
     	}
     }

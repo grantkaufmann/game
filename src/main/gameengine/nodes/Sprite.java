@@ -39,7 +39,7 @@ public class Sprite
         this.canvas = canvas;
         this.node = canvas;
         this.gc = canvas.getGraphicsContext2D();
-        setType("Sprite");
+        setType("sprite");
     }
     
     public boolean getActive() {

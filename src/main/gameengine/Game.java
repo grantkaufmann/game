@@ -26,7 +26,7 @@ public abstract class Game {
 	private Scene gameSurface;
 	public static SceneManager sceneManager;
 	private static Group sceneNodes;
-    public final SpriteManager spriteManager = new SpriteManager();
+    public SpriteManager spriteManager;
 	
     public Game(final int fps, final String title) {
         framesPerSecond = fps;

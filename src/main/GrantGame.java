@@ -5,7 +5,12 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import main.gameengine.Game;
+import main.gameengine.Level;
 import main.gameengine.SceneManager;
+import main.gameengine.SpriteManager;
+import main.prefabs.Puppy;
+import main.scenes.GLevel;
+import main.scenes.Level1;
 
 import java.util.Random;
 
@@ -19,36 +24,41 @@ public class GrantGame extends Game {
 	public void initialize(Stage stage) {
 		stage.setTitle(getWindowTitle());
 		sceneManager = new SceneManager(stage, this);
-
+		spriteManager = new SpriteManager(sceneManager);
+		spriteManager.listenKeyEvents(true);
+		spriteManager.listenMouseEvents(true);
+		Level glevel = new GLevel(spriteManager, sceneManager);
+		sceneManager.setScene("glevel");
+		stage.show();
 
 //		stage.setScene(getGameSurface());
 		
 
-		Group level1 = new Group();
 		
-		Rock rock = new Rock(50, Color.PURPLE, 200, 200);
-		level1.getChildren().add(rock.node);
-		spriteManager.addSprites(rock);
+//		Rock rock = new Rock(50, Color.PURPLE, 200, 200);
+//		level1.level.getChildren().add(rock.node);
+//		spriteManager.addSprites(rock);
 		
-		Random rand = new Random(); 
-		for (int i = 0; i < 20; i++) {
-			int x = rand.nextInt(800); 
-			int y = rand.nextInt(600); 
-			Coin coin = new Coin(50, Color.BLUE, x, y);
-			level1.getChildren().add(coin.node);
-			spriteManager.addSprites(coin);
-		}
+//		Random rand = new Random(); 
+//		for (int i = 0; i < 20; i++) {
+//			int x = rand.nextInt(800); 
+//			int y = rand.nextInt(600); 
+//			Coin coin = new Coin(50, Color.BLUE, x, y);
+//			level1.level.getChildren().add(coin.node);
+//			spriteManager.addSprites(coin);
+//		}
 
 		
 //		Ball c = new Ball(50, Color.RED, 600, 200);
 //		level1.getChildren().add(c.node);
 //		spriteManager.addSprites(c);
 		
-		 Puppy puppy = new Puppy(100, 400);
-		 level1.getChildren().add(puppy.node);
-		 spriteManager.addSprites(puppy);
-		 sceneManager.addScenes(level1);
-		 sceneManager.setScene(level1);
+//		 Puppy puppy = new Puppy(100, 400);
+//		 level1.level.getChildren().add(puppy.node);
+//		 spriteManager.addSprites(puppy);
+		 
+//		 sceneManager.addScenes(level1);
+//		 sceneManager.setScene("level");
 //		spriteManager.listenKeyEvents(getGameSurface());
 		// spriteManager.listenMouseEvents(getGameSurface());
 

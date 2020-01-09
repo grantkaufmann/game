@@ -5,7 +5,7 @@ import main.gameengine.nodes.Entity;
 
 public class Rock extends Entity {
     public Rock(double radius, Color fill, int x, int y) {
-    	setType("Rock");
+    	setType(this.getClass().getSimpleName().toLowerCase());
         setID(ID.Rock);
         setCanvasSize(radius * 2, radius * 2);
         positionX = x;

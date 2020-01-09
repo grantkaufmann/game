@@ -6,7 +6,7 @@ public class Player extends Sprite {
 	private double speed = 1;
 	
 	public Player() {
-		setType("Player");
+		setType("player");
 	}
 	
 	public void setSpeed(double speed) {

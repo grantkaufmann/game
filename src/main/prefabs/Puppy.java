@@ -1,4 +1,4 @@
-package main;
+package main.prefabs;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -6,13 +6,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import main.gameengine.nodes.Sprite;
 import main.gameengine.nodes.Player;
+import main.ID;
 
 public class Puppy extends Player {
 
 //    int speed = 5;
     public Puppy(int x, int y) {
         // this.id = id;
-    	setType("Puppy");
+    	setType(this.getClass().getSimpleName().toLowerCase());
         positionX = x;
         positionY = y;
         setSpeed(5);
