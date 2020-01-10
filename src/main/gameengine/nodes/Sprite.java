@@ -85,10 +85,22 @@ public class Sprite
         setCanvasSize(width, height);
     }
 
-    public void setImage(String filename)
-    {
+    public void setImage(String filename) {
        Image i = new Image(filename);
        setImage(i);
+    }
+
+    public void setImage(String filename, double scale) {
+        Image tempImg = new Image(filename);
+        double newWidth = tempImg.getWidth() * scale;
+        double newHeight = tempImg.getHeight() * scale;
+        Image i = new Image(filename, newWidth, newHeight, true, false);
+        setImage(i);
+    }
+
+    public void setImage(String filename, double x, double y) {
+        Image i = new Image(filename, x, y, true, false);
+        setImage(i);
     }
 
     public void setPosition(double x, double y)
@@ -101,6 +113,10 @@ public class Sprite
     {
         velocityX = x;
         velocityY = y;
+    }
+
+    public void setRotation(double deg) {
+        node.setRotate(deg);
     }
 
     public void addVelocity(double x, double y)

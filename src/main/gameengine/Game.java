@@ -19,7 +19,7 @@ public abstract class Game {
 	private final String windowTitle;
 	private boolean debug = false;
 	private boolean running = true;
-	Label debugLabel = new Label("a label");
+	Label debugLabel = new Label("");
 	
 	private static PerformanceTracker tracker;
 	
@@ -120,14 +120,26 @@ public abstract class Game {
     }
     
     protected void updateSprites() {
-        spriteManager.handleUpdate();
+    	try {
+			spriteManager.handleUpdate();
+		} catch(Exception e) {
+    		System.out.println("No sprite manager initialized. Unable to update.");
+		}
     }
 
     public void checkCollisions() {
-    	spriteManager.checkCollisions();
+		try {
+			spriteManager.checkCollisions();
+		} catch(Exception e) {
+			System.out.println("No sprite manager initialized. Unable to check collisions.");
+		}
 	}
     protected void cleanupSprites() {
-        spriteManager.cleanupSprites();
+		try {
+			spriteManager.cleanupSprites();
+		} catch(Exception e) {
+			System.out.println("No sprite manager initialized. Unable to cleanup sprites.");
+		}
     }
     
 	public void tick() {}

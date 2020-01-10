@@ -11,13 +11,13 @@ import javafx.scene.canvas.Canvas;
 
 public class Main extends Application {
 //	Game game = new Game(60, "The Game");
+
 //	TestGame tgame = new TestGame();
 	GrantGame ggame = new GrantGame();
 	
 	@Override 
 	public void start(Stage stage) {
 	
-
 //		tgame.setDebugMode(true);
 //		tgame.initialize(stage);
 //		tgame.start();
