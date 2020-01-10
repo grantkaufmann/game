@@ -1,4 +1,4 @@
-package main;
+package main.prefabs;
 
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;

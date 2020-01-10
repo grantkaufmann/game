@@ -9,7 +9,6 @@ public class Item extends Sprite {
 	}
 	
     public void handleCollisions(Sprite spriteB) {
-//    	System.out.println(spriteB.getType());
     	if (spriteB.isType("player")) {
     		setActive(false);
     	}

@@ -11,6 +11,7 @@ import main.ID;
 public class Puppy extends Player {
 
 //    int speed = 5;
+	
     public Puppy(int x, int y) {
         // this.id = id;
     	setType(this.getClass().getSimpleName().toLowerCase());
@@ -31,8 +32,14 @@ public class Puppy extends Player {
     }
 
     public void handleUpdate() {
+    	super.handleUpdate();
         node.setTranslateX(positionX += velocityX);
         node.setTranslateY(positionY += velocityY);
+        if (main.gameengine.Game.keyPressManager.isKeyPressed(KeyCode.SPACE)) {
+      		Arrow arrow = new Arrow(10, Color.RED, node.getTranslateX() + (width / 2), node.getTranslateY(), 0, -15);
+      		main.GrantGame.getSceneNodes().getChildren().add(arrow.getNode());
+      		main.GrantGame.spriteManager.addSprites(arrow);
+        }
         collidesWall();
     }
 
@@ -41,7 +48,7 @@ public class Puppy extends Player {
     }
 
     public void handleCollisions(Sprite spriteB) {
-        System.out.println(id + " collided with: " + spriteB.id);
+//        System.out.println(id + " collided with: " + spriteB.id);
 //        velocityX = velocityX * -1;
 //        velocityY = velocityY * -1;
 //        spriteB.velocityX = spriteB.velocityX * -1;

@@ -49,8 +49,8 @@ public class SceneManager {
                 activeScene = scene;
                 activeLevel = group;
                 game.spriteManager.initializeSprites();
-                if (game.spriteManager.listenKeyEvents) { game.spriteManager.listenKeyEvents(scene); }
-                if (game.spriteManager.listenMouseEvents) { game.spriteManager.listenMouseEvents(scene); }
+//                if (game.spriteManager.listenKeyEvents) { game.spriteManager.listenKeyEvents(scene); }
+//                if (game.spriteManager.listenMouseEvents) { game.spriteManager.listenMouseEvents(scene); }
                 scene.addEventHandler(KeyEvent.KEY_RELEASED, (key) -> {
                     if (key.getCode().toString().equals("P")) {
                         if (getNextLevel() != null) {

@@ -8,6 +8,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class Sprite
     public Image image;
     public Canvas canvas;
     public GraphicsContext gc;
+    public StackPane sp;
     public Node node;
     public ID id;
     public List animations = new ArrayList<>();
@@ -31,12 +33,14 @@ public class Sprite
     public double width;
     public double height;
     private boolean active = true;
+    
     ArrayList<String> type = new ArrayList<String>();
 
     public Sprite()
     {
         Canvas canvas = new Canvas();
         this.canvas = canvas;
+        
         this.node = canvas;
         this.gc = canvas.getGraphicsContext2D();
         setType("sprite");
@@ -146,7 +150,6 @@ public class Sprite
             if (node.getTranslateX() > (node.getScene().getWidth() -
                 node.getBoundsInParent().getWidth()) ||
                 node.getTranslateX() < 0) {
-            	System.out.println(positionX);
                 velocityX = velocityX * -1;
                 setPosition(positionX, positionY);
             }

@@ -1,6 +1,7 @@
-package main;
+package main.prefabs;
 
 import javafx.scene.paint.Color;
+import main.ID;
 import main.gameengine.nodes.Item;
 
 public class Coin extends Item {

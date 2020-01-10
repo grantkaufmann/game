@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 public class SpriteManager {
 
     private SceneManager sceneManager;
-    public boolean listenKeyEvents = false;
-    public boolean listenMouseEvents = false;
+//    public boolean listenKeyEvents = false;
+//    public boolean listenMouseEvents = false;
 
     public SpriteManager(SceneManager sceneManager) {
         this.sceneManager = sceneManager;
@@ -37,25 +37,25 @@ public class SpriteManager {
     }
 
     public void listenKeyEvents(boolean listen) {
-        listenKeyEvents = listen;
+//        listenKeyEvents = listen;
     }
 
     public void listenKeyEvents(Scene scene) {
-        scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-            for (Sprite gameActor : GAME_ACTORS) {
-                gameActor.handleKeyEvent(key.getCode(), true);
-            }
-        });
-
-        scene.addEventHandler(KeyEvent.KEY_RELEASED, (key) -> {
-            for (Sprite gameActor : GAME_ACTORS) {
-                gameActor.handleKeyEvent(key.getCode(), false);
-            }
-        });
+//        scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+//            for (Sprite gameActor : GAME_ACTORS) {
+//                gameActor.handleKeyEvent(key.getCode(), true);
+//            }
+//        });
+//
+//        scene.addEventHandler(KeyEvent.KEY_RELEASED, (key) -> { 
+//            for (Sprite gameActor : GAME_ACTORS) {
+//        		gameActor.handleKeyEvent(key.getCode(), false);
+//            }
+//        });
     }
 
     public void listenMouseEvents(boolean listen) {
-        listenMouseEvents = listen;
+//        listenMouseEvents = listen;
     }
 
     public void listenMouseEvents(Scene scene) {
@@ -78,6 +78,7 @@ public class SpriteManager {
      */
     public void addSprites(Sprite... sprites) {
         GAME_ACTORS.addAll(Arrays.asList(sprites));
+       
     }
 
     public void initializeSprites() {
@@ -136,7 +137,6 @@ public class SpriteManager {
 
     public void checkCollisions() {
         List<Sprite> activeSprites = getActiveSprites();
-
         for (Sprite spriteA : activeSprites) {
             for (Sprite spriteB : activeSprites) {
                 if (spriteA != spriteB && spriteA.intersects(spriteB)) {
@@ -156,7 +156,6 @@ public class SpriteManager {
 
     public void handleUpdate() {
         List<Sprite> activeSprites = getActiveSprites();
-
         for (Sprite gameActor : activeSprites) {
             gameActor.handleUpdate();
         }
@@ -165,7 +164,7 @@ public class SpriteManager {
         }
     }
 
-    private List<Sprite> getActiveSprites() {
+    public List<Sprite> getActiveSprites() {
         List<Sprite> SpritesWithoutNulls = GAME_ACTORS.stream().filter(p -> p.node.getScene() != null).collect(Collectors.toList());
         List<Sprite> ActiveSprites = SpritesWithoutNulls.stream().filter(p -> p.node.getScene() == sceneManager.activeScene).collect(Collectors.toList());
         return ActiveSprites;

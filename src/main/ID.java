@@ -4,5 +4,6 @@ public enum ID {
     Puppy(),
     Ball(),
     Coin(),
-    Rock()
+    Rock(),
+    Arrow()
 }

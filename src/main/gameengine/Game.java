@@ -26,7 +26,8 @@ public abstract class Game {
 	private Scene gameSurface;
 	public static SceneManager sceneManager;
 	private static Group sceneNodes;
-    public SpriteManager spriteManager;
+    public static SpriteManager spriteManager;
+    public static KeyboardManager keyPressManager;
 	
     public Game(final int fps, final String title) {
         framesPerSecond = fps;
@@ -68,7 +69,8 @@ public abstract class Game {
 				if (debug) {
 					debugLabel.setText(
 							String.format("Averate FPS: %.3f \n", tracker.getAverageFPS()) +
-							String.format("Instant FPS rate: %.3f", tracker.getInstantFPS())
+							String.format("Instant FPS rate: %.3f \n", tracker.getInstantFPS()) +
+							"Rendered Objects: " + spriteManager.getActiveSprites().size()
 						);
 				}
 				updateSprites();
@@ -163,7 +165,11 @@ public abstract class Game {
 	
 	protected void setGameSurface(Scene gameSurface) {
 		tracker = PerformanceTracker.getSceneTracker(gameSurface);
+
 		this.gameSurface = gameSurface;
+		if (keyPressManager != null) {
+			keyPressManager.setScene(gameSurface);
+		}
 	}
 	
 	public static Group getSceneNodes() {

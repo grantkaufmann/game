@@ -1,18 +1,27 @@
 package main.gameengine.nodes;
 
+import javafx.scene.input.KeyCode;
+import main.prefabs.Arrow;
+
 public class Entity extends Sprite {
+//	public int health = 100;
+	
 	public Entity() {
 		setType("entity");
 	}
 	
-    public void handleCollisions(Sprite spriteB) {
-    	if (spriteB.isType("player")) {
-    		System.out.println(node.getTranslateX());
-    		System.out.println(spriteB.velocityX);
-    		setPosition(node.getTranslateX() + spriteB.velocityX, node.getTranslateY() + spriteB.velocityY);
-//    		setPosition(60, 60);
-    	}
-    	collidesWall();
-
-    }
+//    public void handleCollisions(Sprite spriteB) {
+//    	if (spriteB.isType("player")) {
+//    		setPosition(node.getTranslateX() + spriteB.velocityX, node.getTranslateY() + spriteB.velocityY);
+//    	}
+//    	if (spriteB.isType("arrow")) {
+//    		Arrow sprite = (Arrow)spriteB;
+//    		health = health - sprite.damage;
+//    	}
+//    	if (health <= 0) {
+//    		setActive(false);
+//    	}
+//    	collidesWall();
+//    }
+    
 }
