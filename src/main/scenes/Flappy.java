@@ -1,6 +1,7 @@
 package main.scenes;
 
 import javafx.scene.paint.Color;
+import main.gameengine.KeyboardManager;
 import main.gameengine.Level;
 import main.gameengine.SceneManager;
 import main.gameengine.SpriteManager;
@@ -12,7 +13,7 @@ import main.prefabs.Puppy;
 import java.util.Random;
 
 public class Flappy extends Level {
-    public Flappy(SpriteManager spriteManager, SceneManager sceneManager) {
+    public Flappy(SpriteManager spriteManager, SceneManager sceneManager, KeyboardManager keyPressManager) {
 
         for (int i = 0; i <= 10; i++) {
             FlappyBG flappyBG2 = new FlappyBG(1024 * i, 0);
@@ -38,7 +39,7 @@ public class Flappy extends Level {
             spriteManager.addSprites(pipe2);
         }
 
-        FlappyBird bird = new FlappyBird(20, 100, spriteManager, sceneManager);
+        FlappyBird bird = new FlappyBird(20, 100, spriteManager, sceneManager, keyPressManager);
         level.getChildren().add(bird.node);
         spriteManager.addSprites(bird);
 

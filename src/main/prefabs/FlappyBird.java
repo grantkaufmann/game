@@ -1,6 +1,8 @@
 package main.prefabs;
 
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
+import main.gameengine.KeyboardManager;
 import main.gameengine.SceneManager;
 import main.gameengine.SpriteManager;
 import main.gameengine.nodes.Sprite;
@@ -10,12 +12,14 @@ public class FlappyBird extends Sprite {
     private boolean alive = true;
     private SpriteManager spriteManager;
     private SceneManager sceneManager;
+    private KeyboardManager keyPressManager;
 
     private int terminalVelocity = 8;
 
-    public FlappyBird(int x, int y, SpriteManager spriteManager, SceneManager sceneManager) {
+    public FlappyBird(int x, int y, SpriteManager spriteManager, SceneManager sceneManager, KeyboardManager keyPressManager) {
         this.spriteManager = spriteManager;
         this.sceneManager = sceneManager;
+        this.keyPressManager = keyPressManager;
     	setType("bird");
         setPosition(x, y);
     }
@@ -26,6 +30,11 @@ public class FlappyBird extends Sprite {
     }
 
     public void handleUpdate() {
+
+        if (keyPressManager.isKeyPressed(KeyCode.SPACE)) {
+            setVelocity(0, velocityY - terminalVelocity * 2);
+            setRotation(-90);
+        }
 
        if (node.getTranslateY() + 100 > node.getScene().getHeight()) {
            handleDie();
@@ -63,18 +72,6 @@ public class FlappyBird extends Sprite {
         if (spriteB.isType("pipe")) {
             handleDie();
         }
-    }
-
-    public void handleKeyEvent(KeyCode keyCode, boolean isPressed) {
-
-//        if (keyCode.getCode() == 82 && isPressed && !alive) {
-//            sceneManager.setScene("flappy");
-//        }
-//
-//        if (keyCode.getCode() == 32 && isPressed && alive) {
-//            setVelocity(0, velocityY - terminalVelocity * 2);
-//            setRotation(-90);
-//        }
     }
 
     public void handleDie() {
