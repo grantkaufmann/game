@@ -1,11 +1,13 @@
-package main.prefabs;
+package main.prefabs.flappy;
 
 import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Color;
+import javafx.scene.media.AudioClip;
 import main.gameengine.KeyboardManager;
 import main.gameengine.SceneManager;
 import main.gameengine.SpriteManager;
 import main.gameengine.nodes.Sprite;
+
+import java.io.File;
 
 public class FlappyBird extends Sprite {
 
@@ -25,18 +27,13 @@ public class FlappyBird extends Sprite {
     }
 
     public void initialize() {
-        setImage("main/resources/flappybird.png", 0.1);
+        setImage("main/resources/flappy/flappybird.png", 0.1);
+        addSound("flap", "main/resources/flappy/flappyflap.mp3");
         gc.drawImage( image, 0, 0 );
         setInitial();
     }
 
     public void handleUpdate() {
-
-        if (keyPressManager.isKeyPressed(KeyCode.SPACE)) {
-            setVelocity(0, velocityY - terminalVelocity * 2);
-            setRotation(-90);
-        }
-
        if (node.getTranslateY() + 100 > node.getScene().getHeight()) {
            handleDie();
            velocityY = 0;
@@ -79,6 +76,14 @@ public class FlappyBird extends Sprite {
 
     public void handleRender() {
 
+    }
+
+    public void handleKeyEvent(KeyCode keyCode, boolean isPressed) {
+        if (keyCode.getChar().equals(" ") && isPressed) {
+            playSound("flap");
+            setVelocity(0, velocityY - terminalVelocity * 2);
+            setRotation(-90);
+        }
     }
 
     public void handleCollisions(Sprite spriteB) {

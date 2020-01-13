@@ -9,16 +9,23 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javafx.scene.Node;
 import main.ID;
 import main.TestGame;
+import main.gameengine.Level;
 
 public class Sprite
 {
+    public List<Sound> sounds = new ArrayList<>();;
     public Image image;
     public Canvas canvas;
     public GraphicsContext gc;
@@ -71,6 +78,20 @@ public class Sprite
         setRotation(initialRotation);
         setPosition(initialPositionX, initialPositionY);
         setVelocity(initialVelocityX, initialVelocityY);
+    }
+
+    public void addSound(String name, String filename) {
+        AudioClip clip = new AudioClip(new File("src/" + filename).toURI().toString());
+        Sound sound = new Sound(name, clip);
+        sounds.add(sound);
+    }
+
+    public void playSound(String name) {
+        for (Sound sound : sounds) {
+            if (sound.name.equals(name)) {
+                sound.clip.play();
+            }
+        }
     }
     
     public boolean getActive() {

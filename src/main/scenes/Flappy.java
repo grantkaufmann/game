@@ -1,14 +1,12 @@
 package main.scenes;
 
-import javafx.scene.paint.Color;
 import main.gameengine.KeyboardManager;
 import main.gameengine.Level;
 import main.gameengine.SceneManager;
 import main.gameengine.SpriteManager;
-import main.prefabs.FlappyBG;
-import main.prefabs.FlappyBird;
-import main.prefabs.FlappyPipe;
-import main.prefabs.Puppy;
+import main.prefabs.flappy.FlappyBG;
+import main.prefabs.flappy.FlappyBird;
+import main.prefabs.flappy.FlappyPipe;
 
 import java.util.Random;
 
