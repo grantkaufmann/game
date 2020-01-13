@@ -27,6 +27,7 @@ public class FlappyBird extends Sprite {
     public void initialize() {
         setImage("main/resources/flappybird.png", 0.1);
         gc.drawImage( image, 0, 0 );
+        setInitial();
     }
 
     public void handleUpdate() {
@@ -62,6 +63,18 @@ public class FlappyBird extends Sprite {
        } else {
            node.setTranslateY(positionY -= velocityY);
        }
+
+
+        if (keyPressManager.isKeyPressed(KeyCode.R)) {
+            readInitial();
+            alive = true;
+            for (int i = 0; i < spriteManager.getSpriteByType("background").size(); i++) {
+                spriteManager.getSpriteByType("background").get(i).readInitial();
+            }
+            for (int i = 0; i < spriteManager.getSpriteByType("pipe").size(); i++) {
+                spriteManager.getSpriteByType("pipe").get(i).readInitial();
+            }
+        }
     }
 
     public void handleRender() {

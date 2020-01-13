@@ -30,9 +30,16 @@ public class Sprite
     public double positionY = 0;
     public double velocityX = 0;
     public double velocityY = 0;
+    public double rotation = 0;
     public double width;
     public double height;
     private boolean active = true;
+
+    public double initialRotation = 0;
+    public double initialPositionX = 0;
+    public double initialPositionY = 0;
+    public double initialVelocityX = 0;
+    public double initialVelocityY = 0;
     
     ArrayList<String> type = new ArrayList<String>();
 
@@ -44,6 +51,20 @@ public class Sprite
         this.node = canvas;
         this.gc = canvas.getGraphicsContext2D();
         setType("sprite");
+    }
+
+    public void setInitial() {
+        initialRotation = rotation;
+        initialPositionX = positionX;
+        initialPositionY = positionY;
+        initialVelocityX = velocityX;
+        initialVelocityY = velocityY;
+    }
+
+    public void readInitial() {
+        setRotation(initialRotation);
+        setPosition(initialPositionX, initialPositionY);
+        setVelocity(initialVelocityX, initialVelocityY);
     }
     
     public boolean getActive() {
@@ -103,20 +124,21 @@ public class Sprite
         setImage(i);
     }
 
-    public void setPosition(double x, double y)
-    {
+    public void setPosition(double x, double y) {
+        positionX = x;
+        positionY = y;
         node.setTranslateX(x += velocityX);
         node.setTranslateY(y += velocityY);
     }
 
-    public void setVelocity(double x, double y)
-    {
+    public void setVelocity(double x, double y) {
         velocityX = x;
         velocityY = y;
     }
 
     public void setRotation(double deg) {
-        node.setRotate(deg);
+        rotation = deg;
+        node.setRotate(rotation);
     }
 
     public void addVelocity(double x, double y)

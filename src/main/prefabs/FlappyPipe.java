@@ -17,6 +17,7 @@ public class FlappyPipe extends Sprite {
         setImage("main/resources/flappypipe.png", 0.7);
         setVelocity(-2, 0);
         gc.drawImage( image, 0, 0 );
+        setInitial();
     }
 
     public void handleUpdate() {

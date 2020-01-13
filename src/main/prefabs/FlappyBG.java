@@ -17,6 +17,7 @@ public class FlappyBG extends Sprite {
         setImage("main/resources/flappybg.png");
         setVelocity(-2, 0);
         gc.drawImage( image, 0, -150 );
+        setInitial();
     }
 
     public void handleUpdate() {
