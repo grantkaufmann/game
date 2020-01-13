@@ -35,6 +35,7 @@ public class Sprite
     public double height;
     private boolean active = true;
 
+    public boolean initialActive = active;
     public Canvas initialCanvas;
     public double initialRotation = rotation;
     public double initialPositionX = positionX;
@@ -55,6 +56,7 @@ public class Sprite
     }
 
     public void setInitial() {
+        initialActive = active;
         initialCanvas = canvas;
         initialRotation = rotation;
         initialPositionX = positionX;
@@ -64,6 +66,7 @@ public class Sprite
     }
 
     public void reset() {
+        active = initialActive;
         canvas = initialCanvas;
         setRotation(initialRotation);
         setPosition(initialPositionX, initialPositionY);
