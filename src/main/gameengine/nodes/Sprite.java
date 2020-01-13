@@ -35,11 +35,12 @@ public class Sprite
     public double height;
     private boolean active = true;
 
-    public double initialRotation = 0;
-    public double initialPositionX = 0;
-    public double initialPositionY = 0;
-    public double initialVelocityX = 0;
-    public double initialVelocityY = 0;
+    public Canvas initialCanvas;
+    public double initialRotation = rotation;
+    public double initialPositionX = positionX;
+    public double initialPositionY = positionY;
+    public double initialVelocityX = velocityX;
+    public double initialVelocityY = velocityY;
     
     ArrayList<String> type = new ArrayList<String>();
 
@@ -54,6 +55,7 @@ public class Sprite
     }
 
     public void setInitial() {
+        initialCanvas = canvas;
         initialRotation = rotation;
         initialPositionX = positionX;
         initialPositionY = positionY;
@@ -62,6 +64,7 @@ public class Sprite
     }
 
     public void reset() {
+        canvas = initialCanvas;
         setRotation(initialRotation);
         setPosition(initialPositionX, initialPositionY);
         setVelocity(initialVelocityX, initialVelocityY);
