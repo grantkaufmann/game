@@ -61,7 +61,7 @@ public class Sprite
         initialVelocityY = velocityY;
     }
 
-    public void readInitial() {
+    public void reset() {
         setRotation(initialRotation);
         setPosition(initialPositionX, initialPositionY);
         setVelocity(initialVelocityX, initialVelocityY);

@@ -66,13 +66,13 @@ public class FlappyBird extends Sprite {
 
 
         if (keyPressManager.isKeyPressed(KeyCode.R)) {
-            readInitial();
+            reset();
             alive = true;
             for (int i = 0; i < spriteManager.getSpriteByType("background").size(); i++) {
-                spriteManager.getSpriteByType("background").get(i).readInitial();
+                spriteManager.getSpriteByType("background").get(i).reset();
             }
             for (int i = 0; i < spriteManager.getSpriteByType("pipe").size(); i++) {
-                spriteManager.getSpriteByType("pipe").get(i).readInitial();
+                spriteManager.getSpriteByType("pipe").get(i).reset();
             }
         }
     }
