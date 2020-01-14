@@ -1,10 +1,9 @@
-package main;
-
+package Main;
+import JGame.*;
 import javafx.stage.Stage;
-import main.gameengine.*;
-import main.scenes.Flappy;
+import Main.scenes.Flappy;
 
-public class TestGame extends Game {
+public class TestGame extends JGame {
 	
 	public TestGame() {
 		super(60, "Flappy Birb");
@@ -20,9 +19,9 @@ public class TestGame extends Game {
 //		spriteManager.listenKeyEvents(true);
 //		spriteManager.listenMouseEvents(true);
 
-		// Level level1 = new Level1(spriteManager, sceneManager);
-		// Level level2 = new Level2(spriteManager, sceneManager);
-		// Level level3 = new Level3(spriteManager, sceneManager);
+		// JGame.Level level1 = new Level1(spriteManager, sceneManager);
+		// JGame.Level level2 = new Level2(spriteManager, sceneManager);
+		// JGame.Level level3 = new Level3(spriteManager, sceneManager);
 
 		Level flappy = new Flappy(spriteManager, sceneManager, keyPressManager);
 

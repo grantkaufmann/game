@@ -1,4 +1,4 @@
-package main.gameengine;
+package JGame;
 
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
@@ -12,14 +12,14 @@ public class SceneManager {
 
     private final static List<Level> GAME_GROUPS= new ArrayList<Level>();
 
-    private Game game;
+    private JGame JGame;
     private Stage stage;
     public Scene activeScene;
     public Level activeLevel;
 
-    public SceneManager(Stage stage, Game game) {
+    public SceneManager(Stage stage, JGame JGame) {
         this.stage = stage;
-        this.game = game;
+        this.JGame = JGame;
     }
 
     public void addScenes(Level... groups) {
@@ -43,12 +43,12 @@ public class SceneManager {
         for (Level group : GAME_GROUPS) {
             if (group.name.equals(groupName)) {
                 Scene scene = new Scene(group.level, 800, 600);
-                game.setSceneNodes(group.level);
-                game.setGameSurface(scene);
+                JGame.setSceneNodes(group.level);
+                JGame.setGameSurface(scene);
                 stage.setScene(scene);
                 activeScene = scene;
                 activeLevel = group;
-                game.spriteManager.initializeSprites();
+                JGame.spriteManager.initializeSprites();
 //                if (game.spriteManager.listenKeyEvents) { game.spriteManager.listenKeyEvents(scene); }
 //                if (game.spriteManager.listenMouseEvents) { game.spriteManager.listenMouseEvents(scene); }
                 scene.addEventHandler(KeyEvent.KEY_RELEASED, (key) -> {

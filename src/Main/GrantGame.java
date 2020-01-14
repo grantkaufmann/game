@@ -1,21 +1,10 @@
-package main;
+package Main;
 
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.paint.Color;
+import JGame.*;
 import javafx.stage.Stage;
-import main.gameengine.Game;
-import main.gameengine.KeyboardManager;
-import main.gameengine.Level;
-import main.gameengine.SceneManager;
-import main.gameengine.SpriteManager;
-import main.prefabs.Puppy;
-import main.scenes.GLevel;
-import main.scenes.Level1;
+import Main.scenes.GLevel;
 
-import java.util.Random;
-
-public class GrantGame extends Game {
+public class GrantGame extends JGame {
 	
 	public GrantGame() {
 		super(60, "Another");

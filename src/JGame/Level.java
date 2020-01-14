@@ -1,4 +1,4 @@
-package main.gameengine;
+package JGame;
 
 import javafx.scene.Group;
 

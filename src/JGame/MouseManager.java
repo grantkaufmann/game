@@ -1,16 +1,11 @@
-package main.gameengine;
+package JGame;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.sun.javafx.collections.MappingChange.Map;
-
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import main.gameengine.nodes.Sprite;
+import JGame.nodes.Sprite;
 
 
 public class MouseManager {
@@ -27,7 +22,7 @@ public class MouseManager {
 				keyState.put(k, mouseEvent);
 			}
 			
-            for (Sprite gameActor : main.gameengine.Game.spriteManager.getAllSprites()) {
+            for (Sprite gameActor : JGame.spriteManager.getAllSprites()) {
                 gameActor.handleMouseEvent(mouseEvent, true);
             }
         });
@@ -38,7 +33,7 @@ public class MouseManager {
 			} else {
 				keyState.put(k, false);
 			}
-            for (Sprite gameActor : main.gameengine.Game.spriteManager.getAllSprites()) {
+            for (Sprite gameActor : JGame.spriteManager.getAllSprites()) {
             	gameActor.handleMouseEvent(mouseEvent, false);
             }
         });

@@ -1,9 +1,6 @@
-package main.gameengine.nodes;
+package nodes;
 
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import main.prefabs.Arrow;
 
 public class Player extends Sprite {
 	public boolean shooting = false;
@@ -24,39 +21,39 @@ public class Player extends Sprite {
     public void handleUpdate() {
         node.setTranslateX(positionX += velocityX);
         node.setTranslateY(positionY += velocityY);
-//        else if (!main.gameengine.Game.keyPressManager.isKeyPressed(KeyCode.W))	{ velocityY = 0; }
+//        else if (!Game.keyPressManager.isKeyPressed(KeyCode.W))	{ velocityY = 0; }
         
         
-        if (main.gameengine.Game.keyPressManager.isKeyPressed(KeyCode.W)) 			{ velocityY = -speed;}
-        else if (main.gameengine.Game.keyPressManager.isKeyPressed(KeyCode.S))		{ velocityY = speed;}
+        if (Game.keyPressManager.isKeyPressed(KeyCode.W)) 			{ velocityY = -speed;}
+        else if (Game.keyPressManager.isKeyPressed(KeyCode.S))		{ velocityY = speed;}
         else 																		{ velocityY = 0;}
         
-        if (main.gameengine.Game.keyPressManager.isKeyPressed(KeyCode.A)) 			{ velocityX = -speed;}
-        else if (main.gameengine.Game.keyPressManager.isKeyPressed(KeyCode.D))		{ velocityX = speed;}
+        if (Game.keyPressManager.isKeyPressed(KeyCode.A)) 			{ velocityX = -speed;}
+        else if (Game.keyPressManager.isKeyPressed(KeyCode.D))		{ velocityX = speed;}
         else 																		{ velocityX = 0;}
         
-//        if (main.gameengine.Game.keyPressManager.isKeyPressed(KeyCode.W)) 			{ velocityY = -speed;
-//        } else if (main.gameengine.Game.keyPressManager.isKeyPressed(KeyCode.A)) 	{ velocityX = -speed;
-//		} else if (main.gameengine.Game.keyPressManager.isKeyPressed(KeyCode.S)) 	{ velocityY = speed;
-//		} else if (main.gameengine.Game.keyPressManager.isKeyPressed(KeyCode.D)) 	{ velocityX = speed;
+//        if (Game.keyPressManager.isKeyPressed(KeyCode.W)) 			{ velocityY = -speed;
+//        } else if (Game.keyPressManager.isKeyPressed(KeyCode.A)) 	{ velocityX = -speed;
+//		} else if (Game.keyPressManager.isKeyPressed(KeyCode.S)) 	{ velocityY = speed;
+//		} else if (Game.keyPressManager.isKeyPressed(KeyCode.D)) 	{ velocityX = speed;
 //		} else {
 //			velocityY = 0;
 //			velocityX = 0;
 //		}
 
-//        if (main.gameengine.Game.keyPressManager.isKeyPressed(KeyCode.A)) {
+//        if (Game.keyPressManager.isKeyPressed(KeyCode.A)) {
 //        	velocityX = -speed;
 //    	} else {
 //    		velocityX = 0;
 //    	}
 //        
-//        if (main.gameengine.Game.keyPressManager.isKeyPressed(KeyCode.S)) {
+//        if (Game.keyPressManager.isKeyPressed(KeyCode.S)) {
 //        	velocityY = speed;
 //    	} else {
 //    		velocityY = 0;
 //    	}
 //        
-//        if (main.gameengine.Game.keyPressManager.isKeyPressed(KeyCode.D)) {
+//        if (Game.keyPressManager.isKeyPressed(KeyCode.D)) {
 //        	velocityX = speed;
 //    	} else {
 //    		velocityX = 0;
@@ -73,7 +70,7 @@ public class Player extends Sprite {
 //        if(keyCode == KeyCode.D && !isPressed) { velocityX = 0; }
 //        
 //        if(keyCode == KeyCode.SPACE ) { shooting = isPressed; } 
-//        if (main.gameengine.Game.keyPressManager.isKeyPressed(KeyCode.SPACE)) {
+//        if (Game.keyPressManager.isKeyPressed(KeyCode.SPACE)) {
 //      		Arrow arrow = new Arrow(10, Color.RED, node.getTranslateX() + (width / 2), node.getTranslateY(), 0, -15);
 //      		main.GrantGame.getSceneNodes().getChildren().add(arrow.getNode());
 //      		main.GrantGame.spriteManager.addSprites(arrow);

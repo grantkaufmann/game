@@ -1,14 +1,11 @@
-package main.gameengine;
+package JGame;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.sun.javafx.collections.MappingChange.Map;
-
+import JGame.nodes.Sprite;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import main.gameengine.nodes.Sprite;
 
 
 public class KeyboardManager {
@@ -23,8 +20,7 @@ public class KeyboardManager {
 			} else {
 				keyState.put(k, true);
 			}
-			
-            for (Sprite gameActor : main.gameengine.Game.spriteManager.getAllSprites()) {
+            for (Sprite gameActor : JGame.spriteManager.getAllSprites()) {
                 gameActor.handleKeyEvent(k, true);
             }
         });
@@ -35,7 +31,7 @@ public class KeyboardManager {
 			} else {
 				keyState.put(k, false);
 			}
-            for (Sprite gameActor : main.gameengine.Game.spriteManager.getAllSprites()) {
+            for (Sprite gameActor : JGame.spriteManager.getAllSprites()) {
         		gameActor.handleKeyEvent(k, false);
             }
         });

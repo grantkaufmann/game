@@ -1,4 +1,4 @@
-package main.gameengine.nodes;
+package nodes;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
@@ -6,22 +6,15 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.geometry.Rectangle2D;
 
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Color;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import javafx.scene.Node;
 import main.ID;
-import main.TestGame;
-import main.gameengine.Level;
 
 public class Sprite
 {
@@ -31,7 +24,6 @@ public class Sprite
     public GraphicsContext gc;
     public StackPane sp;
     public Node node;
-    public ID id;
     public List animations = new ArrayList<>();
     public double positionX = 0;
     public double positionY = 0;
@@ -112,10 +104,6 @@ public class Sprite
     
     public boolean isType(String type) {
     	return this.type.contains(type);
-    }
-
-    public void setID(ID id) {
-        this.id = id;
     }
 
     public void setCanvasSize(double width, double height) {

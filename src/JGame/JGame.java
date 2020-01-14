@@ -1,4 +1,4 @@
-package main.gameengine;
+package JGame;
 
 import com.sun.javafx.perf.PerformanceTracker;
 
@@ -13,12 +13,11 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public abstract class Game {
+public abstract class JGame {
 	private static Timeline gameLoop;
 	private final int framesPerSecond;
 	private final String windowTitle;
 	private boolean debug = false;
-	private boolean running = true;
 	Label debugLabel = new Label("");
 	
 	private static PerformanceTracker tracker;
@@ -29,37 +28,14 @@ public abstract class Game {
     public static SpriteManager spriteManager;
     public static KeyboardManager keyPressManager;
 	
-    public Game(final int fps, final String title) {
+    public JGame(final int fps, final String title) {
         framesPerSecond = fps;
         windowTitle = title;
-        // create and set timeline for the game loop
         run();
     }
     
     public abstract void initialize(final Stage stage);
-    
-    protected final void buildAndSetGameLoop() {
-    	
-//        final Duration oneFrameAmt = Duration.millis(1000/getFramesPerSecond());
-//        final KeyFrame oneFrame = new KeyFrame(oneFrameAmt,
-//            new EventHandler() {
-//                @Override
-//                public void handle(Event event) {
-                    // update actors
-//                    updateSprites();
-                    // check for collision
-//                    checkCollisions();
-                    // removed dead things
-//                    cleanupSprites();
-//                }
-//        }); // oneFrame
 
-        // sets the game world's game loop (Timeline)
-//        setGameLoop(TimelineBuilder.create()
-//                .cycleCount(Animation.INDEFINITE)
-//                .keyFrames(oneFrame)
-//                .build());
-    }
     private void run() {
     	final Duration oneFrameAmt = Duration.millis(1000/getFramesPerSecond());
     	final KeyFrame oneFrame = new KeyFrame(oneFrameAmt,
@@ -86,37 +62,6 @@ public abstract class Game {
       timeline.setCycleCount(Timeline.INDEFINITE);
       timeline.getKeyFrames().add(oneFrame);
       setGameLoop(timeline);
-//      gameLoop.play();
-
-
-//    	long lastTime = System.nanoTime();
-//    	double ns = 1000000000 / getFramesPerSecond();
-//    	double delta = 0;
-//    	int updates = 0;
-//    	int frames = 0;
-//    	long timer = System.currentTimeMillis();
-//    	while(running) {
-//    		long now = System.nanoTime();
-//    		delta += (now - lastTime) / ns;
-//    		lastTime = now;
-//    		if (delta >= 1) {
-//    			tick();
-//    			updates++;
-//    			delta--;
-//    		}
-//    		render();
-//    		frames++;
-//    		
-//    		if (System.currentTimeMillis() - timer > 1000) {
-//    			timer += 1000;
-//    			if (debug) {
-//        			System.out.println(updates + " ticks, Fps " + frames);
-//    			}
-//    			updates = 0;
-//    			frames = 0;
-//    		}
-//    	}
-//    	stop();
     }
     
     protected void updateSprites() {
@@ -141,17 +86,11 @@ public abstract class Game {
 			System.out.println("No sprite manager initialized. Unable to cleanup sprites.");
 		}
     }
-    
-	public void tick() {}
-	public void render() {}
+
 	public void stop() {
-//		running = false;
 		getGameLoop().stop();
 	}
 	public void start() {
-//		running = true;
-//		run();
-//		System.out.println(getGameLoop());
 		getGameLoop().play();
 	}
     

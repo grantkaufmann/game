@@ -1,6 +1,4 @@
-package main.gameengine.nodes;
-
-import javafx.stage.Stage;
+package nodes;
 
 public class Item extends Sprite {
 		

@@ -1,7 +1,4 @@
-package main.gameengine.nodes;
-
-import javafx.scene.input.KeyCode;
-import main.prefabs.Arrow;
+package nodes;
 
 public class Entity extends Sprite {
 //	public int health = 100;
