@@ -6,19 +6,19 @@ import javafx.stage.Stage;
 public class Main extends Application {
 //	JGame.Game game = new JGame.Game(60, "The JGame.Game");
 
-	TestGame tgame = new TestGame();
-//	GrantGame ggame = new GrantGame();
+//	TestGame tgame = new TestGame();
+	GrantGame ggame = new GrantGame();
 	
 	@Override 
 	public void start(Stage stage) {
 	
-		tgame.setDebugMode(true);
-		tgame.initialize(stage);
-		tgame.start();
+//		tgame.setDebugMode(true);
+//		tgame.initialize(stage);
+//		tgame.start();
 		
-//		ggame.setDebugMode(true);
-//		ggame.initialize(stage);
-//		ggame.start();
+		ggame.setDebugMode(true);
+		ggame.initialize(stage);
+		ggame.start();
 		
 	   } 
    public static void main(String args[]){ 
