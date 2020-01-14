@@ -1,10 +1,9 @@
-package main.prefabs;
+package Main.prefabs;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
-import main.ID;
-import main.gameengine.nodes.Item;
-import main.gameengine.nodes.Sprite;
+import JGame.nodes.Item;
+import JGame.nodes.Sprite;
 
 public class Arrow extends Item {
 	public int damage = 1;
@@ -17,7 +16,6 @@ public class Arrow extends Item {
 	    gc.fillRect(0, 0, 10, 20);
 	    updatePosition();
 	    setVelocity(vx, vy);
-	    setID(ID.Arrow);
 	}
 	
     public void handleCollisions(Sprite spriteB) {

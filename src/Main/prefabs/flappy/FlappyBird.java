@@ -1,13 +1,10 @@
-package main.prefabs.flappy;
+package Main.prefabs.flappy;
 
+import JGame.KeyboardManager;
+import JGame.SpriteManager;
 import javafx.scene.input.KeyCode;
-import javafx.scene.media.AudioClip;
-import main.gameengine.KeyboardManager;
-import main.gameengine.SceneManager;
-import main.gameengine.SpriteManager;
-import main.gameengine.nodes.Sprite;
-
-import java.io.File;
+import JGame.SceneManager;
+import JGame.nodes.Sprite;
 
 public class FlappyBird extends Sprite {
 
@@ -27,8 +24,8 @@ public class FlappyBird extends Sprite {
     }
 
     public void initialize() {
-        setImage("main/resources/flappy/flappybird.png", 0.1);
-        addSound("flap", "main/resources/flappy/flappyflap.mp3");
+        setImage("Main/resources/flappy/flappybird.png", 0.1);
+        addSound("flap", "Main/resources/flappy/flappyflap.mp3");
         gc.drawImage( image, 0, 0 );
         setInitial();
     }

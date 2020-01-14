@@ -1,4 +1,4 @@
-package nodes;
+package JGame.nodes;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
@@ -14,7 +14,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.Node;
-import main.ID;
 
 public class Sprite
 {

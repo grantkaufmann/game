@@ -1,14 +1,12 @@
-package main.prefabs;
+package Main.prefabs;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import main.ID;
-import main.gameengine.nodes.Entity;
-import main.gameengine.nodes.Sprite;
+import JGame.nodes.Entity;
+import JGame.nodes.Sprite;
 
 public class Rock extends Entity {
 	public int health = 100;
@@ -19,7 +17,6 @@ public class Rock extends Entity {
     	
     	healtbarTank1 = new Rectangle(radius, 5, Color.GREEN);
     	setType(this.getClass().getSimpleName().toLowerCase());
-        setID(ID.Rock);
         setCanvasSize(radius * 2, radius * 2 + 10);
         positionX = x;
         positionY = y;

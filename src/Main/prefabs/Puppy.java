@@ -1,12 +1,10 @@
-package main.prefabs;
+package Main.prefabs;
 
+import JGame.JGame;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import main.gameengine.nodes.Sprite;
-import main.gameengine.nodes.Player;
-import main.ID;
+import JGame.nodes.Sprite;
+import JGame.nodes.Player;
 
 public class Puppy extends Player {
 
@@ -26,8 +24,7 @@ public class Puppy extends Player {
     }
 
     public void initialize() {
-        setID(ID.Puppy);
-        setImage("main/resources/puppy.png");
+        setImage("Main/resources/puppy.png");
         gc.drawImage( image, 0, 0 );
     }
 
@@ -35,10 +32,10 @@ public class Puppy extends Player {
     	super.handleUpdate();
         node.setTranslateX(positionX += velocityX);
         node.setTranslateY(positionY += velocityY);
-        if (main.gameengine.Game.keyPressManager.isKeyPressed(KeyCode.SPACE)) {
+        if (JGame.keyPressManager.isKeyPressed(KeyCode.SPACE)) {
       		Arrow arrow = new Arrow(10, Color.RED, node.getTranslateX() + (width / 2), node.getTranslateY(), 0, -15);
-      		main.GrantGame.getSceneNodes().getChildren().add(arrow.getNode());
-      		main.GrantGame.spriteManager.addSprites(arrow);
+      		Main.GrantGame.getSceneNodes().getChildren().add(arrow.getNode());
+      		Main.GrantGame.spriteManager.addSprites(arrow);
         }
         collidesWall();
     }

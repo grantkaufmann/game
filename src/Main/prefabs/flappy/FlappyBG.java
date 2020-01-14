@@ -1,6 +1,6 @@
-package main.prefabs.flappy;
+package Main.prefabs.flappy;
 
-import main.gameengine.nodes.Sprite;
+import JGame.nodes.Sprite;
 
 public class FlappyBG extends Sprite {
 
@@ -11,7 +11,7 @@ public class FlappyBG extends Sprite {
     }
 
     public void initialize() {
-        setImage("main/resources/flappy/flappybg.png");
+        setImage("Main/resources/flappy/flappybg.png");
         setVelocity(-2, 0);
         gc.drawImage( image, 0, -150 );
         setInitial();

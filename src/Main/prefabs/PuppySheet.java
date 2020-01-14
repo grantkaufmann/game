@@ -1,4 +1,4 @@
-package main.prefabs;
+package Main.prefabs;
 
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -7,7 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 //import puzzle.Settings;
 
-import main.gameengine.nodes.Sprite;
+import JGame.nodes.Sprite;
 
 public class PuppySheet extends Sprite {
 	private boolean keypressed;

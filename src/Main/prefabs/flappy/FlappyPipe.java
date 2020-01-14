@@ -1,7 +1,7 @@
-package main.prefabs.flappy;
+package Main.prefabs.flappy;
 
 import javafx.scene.input.KeyCode;
-import main.gameengine.nodes.Sprite;
+import JGame.nodes.Sprite;
 
 public class FlappyPipe extends Sprite {
 
@@ -13,7 +13,7 @@ public class FlappyPipe extends Sprite {
     }
 
     public void initialize() {
-        setImage("main/resources/flappy/flappypipe.png", 0.7);
+        setImage("Main/resources/flappy/flappypipe.png", 0.7);
         setVelocity(-2, 0);
         gc.drawImage( image, 0, 0 );
         setInitial();

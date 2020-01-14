@@ -1,11 +1,10 @@
-package main.scenes;
+package Main.scenes;
 
-import javafx.scene.Group;
 import javafx.scene.paint.Color;
-import main.gameengine.Level;
-import main.gameengine.SceneManager;
-import main.gameengine.SpriteManager;
-import main.prefabs.Ball;
+import JGame.Level;
+import JGame.SceneManager;
+import JGame.SpriteManager;
+import Main.prefabs.Ball;
 
 import java.util.Random;
 

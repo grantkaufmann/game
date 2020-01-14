@@ -1,4 +1,4 @@
-package nodes;
+package JGame.nodes;
 
 public class Entity extends Sprite {
 //	public int health = 100;

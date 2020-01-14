@@ -1,4 +1,4 @@
-package nodes;
+package JGame.nodes;
 
 public class Item extends Sprite {
 		

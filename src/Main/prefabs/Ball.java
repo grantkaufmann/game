@@ -1,10 +1,8 @@
-package main.prefabs;
+package Main.prefabs;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import main.gameengine.nodes.Sprite;
-import main.ID;
+import JGame.nodes.Sprite;
 
 import java.util.Random;
 
@@ -20,7 +18,6 @@ public class Ball extends Sprite {
     }
 
     public void initialize() {
-        setID(ID.Ball);
         setVelocity(1, 1);
     }
 
@@ -34,7 +31,7 @@ public class Ball extends Sprite {
     }
 
     public void handleCollisions(Sprite spriteB) {
-        System.out.println(id + " of " + node.getScene() + " collided with2 " + spriteB.id + " of " + node.getScene());
+        System.out.println(getType() + " of " + node.getScene() + " collided with2 " + spriteB.getType() + " of " + node.getScene());
 
         setVelocity(velocityX * -1, velocityY * -1);
 

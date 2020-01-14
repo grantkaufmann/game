@@ -1,12 +1,12 @@
-package main.scenes;
+package Main.scenes;
 
-import main.gameengine.KeyboardManager;
-import main.gameengine.Level;
-import main.gameengine.SceneManager;
-import main.gameengine.SpriteManager;
-import main.prefabs.flappy.FlappyBG;
-import main.prefabs.flappy.FlappyBird;
-import main.prefabs.flappy.FlappyPipe;
+import JGame.KeyboardManager;
+import JGame.Level;
+import JGame.SceneManager;
+import JGame.SpriteManager;
+import Main.prefabs.flappy.FlappyBG;
+import Main.prefabs.flappy.FlappyBird;
+import Main.prefabs.flappy.FlappyPipe;
 
 import java.util.Random;
 

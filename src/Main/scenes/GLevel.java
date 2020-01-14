@@ -1,17 +1,14 @@
-package main.scenes;
+package Main.scenes;
 
 import java.util.Random;
 
-import javafx.scene.Group;
+import JGame.Level;
+import JGame.SceneManager;
+import JGame.SpriteManager;
 import javafx.scene.paint.Color;
-import main.gameengine.Level;
-import main.gameengine.SceneManager;
-import main.gameengine.SpriteManager;
-import main.prefabs.Arrow;
-import main.prefabs.Ball;
-import main.prefabs.Coin;
-import main.prefabs.Puppy;
-import main.prefabs.Rock;
+import Main.prefabs.Coin;
+import Main.prefabs.Puppy;
+import Main.prefabs.Rock;
 
 public class GLevel extends Level {
     public GLevel(SpriteManager spriteManager, SceneManager sceneManager) {

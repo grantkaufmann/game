@@ -1,10 +1,9 @@
-package main.scenes;
+package Main.scenes;
 
-import javafx.scene.Group;
-import main.gameengine.Level;
-import main.gameengine.SceneManager;
-import main.gameengine.SpriteManager;
-import main.prefabs.Puppy;
+import JGame.Level;
+import JGame.SceneManager;
+import JGame.SpriteManager;
+import Main.prefabs.Puppy;
 
 public class Level2 extends Level {
     public Level2(SpriteManager spriteManager, SceneManager sceneManager) {

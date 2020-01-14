@@ -1,8 +1,7 @@
-package main.prefabs;
+package Main.prefabs;
 
 import javafx.scene.paint.Color;
-import main.ID;
-import main.gameengine.nodes.Item;
+import JGame.nodes.Item;
 
 public class Coin extends Item {
     public Coin(double radius, Color fill, int x, int y) {
@@ -13,6 +12,5 @@ public class Coin extends Item {
         gc.setFill(Color.YELLOW);
         gc.fillRect(0, 0, 10, 20);
         updatePosition();
-        setID(ID.Coin);
     }
 }

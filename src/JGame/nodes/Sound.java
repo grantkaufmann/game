@@ -1,4 +1,4 @@
-package nodes;
+package JGame.nodes;
 
 import javafx.scene.media.AudioClip;
 
