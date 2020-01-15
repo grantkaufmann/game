@@ -5,12 +5,14 @@ import com.sun.javafx.perf.PerformanceTracker;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 public abstract class JGame {
@@ -27,14 +29,15 @@ public abstract class JGame {
 	private static Group sceneNodes;
     public static SpriteManager spriteManager;
     public static KeyboardManager keyPressManager;
+	public static ClientManager clientManager;
 	
     public JGame(final int fps, final String title) {
         framesPerSecond = fps;
         windowTitle = title;
         run();
     }
-    
-    public abstract void initialize(final Stage stage);
+
+	public abstract void initialize(final Stage stage);
 
     private void run() {
     	final Duration oneFrameAmt = Duration.millis(1000/getFramesPerSecond());
@@ -46,8 +49,9 @@ public abstract class JGame {
 					debugLabel.setText(
 							String.format("Averate FPS: %.3f \n", tracker.getAverageFPS()) +
 							String.format("Instant FPS rate: %.3f \n", tracker.getInstantFPS()) +
-							"Rendered Objects: " + spriteManager.getActiveSprites().size()
-						);
+							String.format("Rendered Objects: %s \n", spriteManager.getActiveSprites().size()) +
+							String.format("Players: %s", clientManager.getConnectedUsers().size())
+					);
 				}
 				updateSprites();
 				// check for collision

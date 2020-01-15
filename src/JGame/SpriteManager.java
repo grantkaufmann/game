@@ -1,7 +1,6 @@
 package JGame;
 
 import JGame.nodes.User;
-import Main.prefabs.Chat;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import JGame.nodes.Sprite;
@@ -15,30 +14,13 @@ import java.util.stream.Collectors;
 
 public class SpriteManager {
 
-    private NetworkManager net;
-
     private SceneManager sceneManager;
-//    public boolean listenKeyEvents = false;
-//    public boolean listenMouseEvents = false;
 
     public SpriteManager(SceneManager sceneManager) {
-        net = NetworkManager.getInstance();
-        net.setServer("localhost", 80);
-        net.setInterface(this);
-        net.submit("NICK " + "Justin");
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    net.hearServer();
-                } catch (Exception e) {
-                }
-            }
-        }).start();
-
         this.sceneManager = sceneManager;
     }
+
+
     /** All the sprite objects currently in play */
     private final static List<Sprite> GAME_ACTORS = new ArrayList<Sprite>();
 
@@ -98,7 +80,11 @@ public class SpriteManager {
      * @param sprites
      */
     public void addSprites(Sprite... sprites) {
-        GAME_ACTORS.addAll(Arrays.asList(sprites));
+        for (Sprite sprite : sprites) {
+            System.out.println(JGame.sceneManager.activeLevel);
+            JGame.sceneManager.activeLevel.level.getChildren().add(sprite.node);
+            GAME_ACTORS.add(sprite);
+        }
     }
 
     public void initializeSprites() {
@@ -200,20 +186,8 @@ public class SpriteManager {
 
     public List<Sprite> getActiveSprites() {
         List<Sprite> SpritesWithoutNulls = GAME_ACTORS.stream().filter(p -> p.node.getScene() != null).collect(Collectors.toList());
-        List<Sprite> ActiveSprites = SpritesWithoutNulls.stream().filter(p -> p.node.getScene() == sceneManager.activeScene).collect(Collectors.toList());
+        List<Sprite> ActiveSprites = SpritesWithoutNulls.stream().filter(p -> p.node.getScene() == JGame.sceneManager.activeScene).collect(Collectors.toList());
         return ActiveSprites;
-    }
-
-    public void connectUser(User u) {
-        System.out.println("Got user" + u);
-    }
-
-    public void handlePacket(String packet) {
-        System.out.println("Got packet" + packet);
-
-        for (Sprite sprite : getSpriteByType("chat")) {
-            sprite.messages.add(packet);
-        }
     }
 
     /**

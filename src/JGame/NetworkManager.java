@@ -23,7 +23,7 @@ public class NetworkManager {
     private BufferedReader _enter;
     private BufferedWriter _leave;
     private static NetworkManager _instance;
-    private SpriteManager chatInterface;
+    private ClientManager chatInterface;
     
     public static NetworkManager getInstance() {
         if (_instance == null) {
@@ -33,6 +33,7 @@ public class NetworkManager {
     }
     
     public void hearServer() {
+        System.out.println("Hearing server");
         initializeHeartBeat();
         try {
             while (true) {
@@ -51,6 +52,7 @@ public class NetworkManager {
                     } catch (Exception e) {
                     }
                 } else if (packet.startsWith("LIST")) {
+                    chatInterface.clearUsers();
                     // chatInterface.cleanList();
                     int count = packet.split("[ ]").length;
                     for (int i = 1; i < count; i++) {
@@ -100,7 +102,7 @@ public class NetworkManager {
         return s;
     }
     
-    public void setInterface(SpriteManager c) {
+    public void setInterface(ClientManager c) {
         this.chatInterface = c;
     }
 

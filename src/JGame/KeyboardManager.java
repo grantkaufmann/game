@@ -3,6 +3,7 @@ package JGame;
 import java.util.HashMap;
 
 import JGame.nodes.Sprite;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -15,6 +16,14 @@ public class KeyboardManager {
 		this.scene = scene;
 		this.scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
 			KeyCode k = key.getCode();
+
+			if (key.getCode().getName().equals("Esc")) {
+				System.out.println("Exiting");
+				JGame.clientManager.submit("EXIT");
+				Platform.exit();
+				System.exit(0);
+			}
+
 			if (keyState.containsKey(k)) {
 				keyState.replace(k, true);
 			} else {
