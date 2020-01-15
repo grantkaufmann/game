@@ -28,6 +28,6 @@ public class Paddle extends Sprite {
     }
 
     public void handleRender() {
-
+        // System.out.println(JGame.getSceneNodes().getChildren().size());
     }
 }

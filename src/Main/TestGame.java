@@ -28,6 +28,5 @@ public class TestGame extends JGame {
 		Level Pong = new Pong();
 
 		stage.show();
-
 	}
 }

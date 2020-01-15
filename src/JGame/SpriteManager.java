@@ -1,14 +1,8 @@
 package JGame;
 
-import JGame.nodes.User;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import JGame.nodes.Sprite;
-import javafx.scene.layout.Pane;
-
-import javax.swing.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -81,9 +75,13 @@ public class SpriteManager {
      */
     public void addSprites(Sprite... sprites) {
         for (Sprite sprite : sprites) {
-            JGame.sceneManager.activeLevel.level.getChildren().add(sprite.node);
+            JGame.sceneManager.activeLevel.level.getChildren().add( JGame.sceneManager.activeLevel.level.getChildren().size() -1, sprite.node);
             GAME_ACTORS.add(sprite);
         }
+    }
+
+    public void registerSprites(Sprite... sprites) {
+        GAME_ACTORS.addAll(Arrays.asList(sprites));
     }
 
     /**

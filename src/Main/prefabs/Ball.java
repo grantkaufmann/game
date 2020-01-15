@@ -15,10 +15,8 @@ public class Ball extends Sprite {
         positionY = y;
         gc.setFill(fill);
         gc.fillRect(0, 0, radius * 2, radius * 2);
-    }
 
-    public void initialize() {
-        setVelocity(1, 1);
+        setVelocity(2, 2);
     }
 
     public void handleUpdate() {
@@ -31,9 +29,9 @@ public class Ball extends Sprite {
     }
 
     public void handleCollisions(Sprite spriteB) {
-        System.out.println(getType() + " of " + node.getScene() + " collided with2 " + spriteB.getType() + " of " + node.getScene());
+        // System.out.println(getType() + " of " + node.getScene() + " collided with2 " + spriteB.getType() + " of " + node.getScene());
 
-        setVelocity(velocityX * -1, velocityY * -1);
+        // setVelocity(velocityX * -1, velocityY * -1);
 
         // spriteB.velocityX = spriteB.velocityX * -1;
         // spriteB.velocityY = spriteB.velocityY * -1;
