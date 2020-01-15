@@ -13,11 +13,14 @@ import javafx.scene.media.AudioClip;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
 import javafx.scene.Node;
 
 public class Sprite
 {
-    public List<Sound> sounds = new ArrayList<>();;
+    public String uuid = UUID.randomUUID().toString();
+    public List<Sound> sounds = new ArrayList<>();
     public Image image;
     public Canvas canvas;
     public GraphicsContext gc;
@@ -84,7 +87,11 @@ public class Sprite
             }
         }
     }
-    
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
     public boolean getActive() {
     	return active;
     }

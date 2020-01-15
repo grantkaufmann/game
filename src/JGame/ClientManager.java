@@ -48,7 +48,16 @@ public class ClientManager {
     }
 
     public void handlePacket(String packet) {
-        System.out.println("Got packet" + packet);
+        System.out.println(packet);
+        if (packet.startsWith("Host:")) {
+            String[] splitter = packet.split(" ");
+            String type = splitter[1];
+            String posX = splitter[2];
+            String posY = splitter[3];
+            String uuid = splitter[4];
+
+            JGame.spriteManager.handlePacket(type, posX, posY, uuid);
+        }
     }
 
     public List<User> getConnectedUsers() {

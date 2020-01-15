@@ -33,46 +33,7 @@ public class SpriteManager {
         return GAME_ACTORS;
     }
 
-    public void listenKeyEvents(boolean listen) {
-//        listenKeyEvents = listen;
-    }
 
-    public void listenKeyEvents(Scene scene) {
-//        scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-//            for (Sprite gameActor : GAME_ACTORS) {
-//                gameActor.handleKeyEvent(key.getCode(), true);
-//            }
-//        });
-//
-//        scene.addEventHandler(KeyEvent.KEY_RELEASED, (key) -> { 
-//            for (Sprite gameActor : GAME_ACTORS) {
-//        		gameActor.handleKeyEvent(key.getCode(), false);
-//            }
-//        });
-    }
-
-    public void listenMouseEvents(boolean listen) {
-//        listenMouseEvents = listen;
-    }
-
-    public void listenMouseEvents(Scene scene) {
-        scene.addEventHandler(MouseEvent.MOUSE_PRESSED, (mouseEvent) -> {
-            for (Sprite gameActor : GAME_ACTORS) {
-                gameActor.handleMouseEvent(mouseEvent, true);
-            }
-        });
-
-        scene.addEventHandler(MouseEvent.MOUSE_RELEASED, (mouseEvent) -> {
-            for (Sprite gameActor : GAME_ACTORS) {
-                gameActor.handleMouseEvent(mouseEvent, false);
-            }
-        });
-    }
-
-    /**
-     * VarArgs of sprite objects to be added to the game.
-     * @param sprites
-     */
     public void addSprites(Sprite... sprites) {
         for (Sprite sprite : sprites) {
             JGame.sceneManager.activeLevel.level.getChildren().add( JGame.sceneManager.activeLevel.level.getChildren().size() -1, sprite.node);
@@ -80,8 +41,36 @@ public class SpriteManager {
         }
     }
 
+    public void addSpriteByType(String type, double x, double y) {
+        for (Sprite sprite : GAME_ACTORS) {
+            if (sprite.isType(type)) {
+                sprite.positionX = x;
+                sprite.positionY = y;
+                JGame.sceneManager.activeLevel.level.getChildren().add( JGame.sceneManager.activeLevel.level.getChildren().size() -1, sprite.node);
+            }
+        }
+    }
+
     public void registerSprites(Sprite... sprites) {
         GAME_ACTORS.addAll(Arrays.asList(sprites));
+    }
+
+    public void handlePacket(String type, String x, String y, String uuid) {
+        // System.out.println("x: " + Float.parseFloat(x) + " y: " + Float.parseFloat(y) );
+
+        Sprite foundGameActor = null;
+
+        for (Sprite gameActor : getSpriteByType(type)) {
+            foundGameActor = gameActor;
+        }
+
+        if (foundGameActor == null) {
+            System.out.println("Adding SPRITE");
+            addSpriteByType(type, 0, 0);
+        } else {
+            foundGameActor.setPosition(Double.parseDouble(x), Double.parseDouble(y));
+        }
+
     }
 
     /**
@@ -109,25 +98,6 @@ public class SpriteManager {
         } else {
             CLEAN_UP_SPRITES.add(sprites[0]);
         }
-    }
-
-    /**
-     * Returns a list of sprite objects to assist in collision checks.
-     * This is a temporary and is a copy of all current sprite objects
-     * (copy of GAME_ACTORS).
-     * @return CHECK_COLLISION_LIST
-     */
-    public List getCollisionsToCheck() {
-        return CHECK_COLLISION_LIST;
-    }
-
-    /**
-     * Clears the list of sprite objects in the collision check collection
-     * (CHECK_COLLISION_LIST).
-     */
-    public void resetCollisionsToCheck() {
-        CHECK_COLLISION_LIST.clear();
-        CHECK_COLLISION_LIST.addAll(GAME_ACTORS);
     }
 
     public List<Sprite> getSpriteByType(String type) {

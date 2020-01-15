@@ -10,7 +10,7 @@ package JGame.nodes;/*
  */
 
 
-import JGame.Server;
+import Server.Server;
 
 import java.io.*;
 import java.net.Socket;
@@ -51,7 +51,7 @@ public class User implements Runnable {
        
         if (!login.startsWith("NICK")) {
             submit("Invalid");
-            Log.log("Invalid Login: " + login);
+            System.out.println("Invalid Login: " + login);
             _connected = false;
         } 
         else {
@@ -91,7 +91,7 @@ public class User implements Runnable {
             p = s.split("[ ]");
             if (p.length > 2) {
                 submit("Invalid syntax");
-                Log.log("Invalid: " + s);
+                System.out.println("Invalid: " + s);
             } else {
                 
                 _lastBeat = System.currentTimeMillis();
@@ -104,7 +104,7 @@ public class User implements Runnable {
             p = s.split("[ ]");
             if (p.length > 2) {
                 submit("Incorrect syntax");
-                Log.log("Invalid: " + s);
+                System.out.println("Invalid: " + s);
             } else {
                 
                 String oldname = _nick;
@@ -115,7 +115,7 @@ public class User implements Runnable {
                     if (!(p[1].length() > 12)) {
                         _nick = p[1];
                         _room.updatedUserList();
-                        Log.log(oldname + " has changed name" + _nick);
+                        System.out.println(oldname + " has changed name" + _nick);
                         _room.spread(oldname + " has changed name " + _nick);
                 
                         submit("OK");
@@ -132,7 +132,7 @@ public class User implements Runnable {
             p = s.split("[ ]");
             if (p.length > 2) {
                 submit("Incorrect syntax");
-                Log.log("Invalid: " + s);
+                System.out.println("Invalid: " + s);
             } else {
                 
                 if (!_room.existUser(new User(p[1]))) {
@@ -142,7 +142,7 @@ public class User implements Runnable {
                     User tmp = _room.getUser(p[1]);
                 
                     submit("======================\nName: " + tmp.getNick() + "\nIP: " + tmp.getIP() + "\nPing: " + tmp.getPing() + "ms\nEntry: " + new Date(tmp.getLoginTime()) + "======================");
-                    Log.log(_nick + " on " + tmp.getNick());
+                    System.out.println(_nick + " on " + tmp.getNick());
                 }
             }
         } 
@@ -164,7 +164,7 @@ public class User implements Runnable {
                 User tmp = _room.getUser(p[1]);
             
                 _room.submitPrivateMessage(this, tmp, s.substring(3+tmp.getNick().length()+1));
-                Log.log("Private message  " + this.getNick() + " y " + tmp.getNick() + ": " + s.substring(3+tmp.getNick().length()));
+                System.out.println("Private message  " + this.getNick() + " y " + tmp.getNick() + ": " + s.substring(3+tmp.getNick().length()));
             }
         }   
 
@@ -174,7 +174,7 @@ public class User implements Runnable {
             
             if (p.length > 3) {
                 submit("Invalid syntax");
-                Log.log("Invalid: " + s);
+                System.out.println("Invalid: " + s);
             } else {
                 
                 if (!Server.roomExists(new Room(p[1]))) {
@@ -206,7 +206,7 @@ public class User implements Runnable {
             
             if (p.length > 3) {
                 submit("Invalid syntax");
-                Log.log("Invalid: " + s);
+                System.out.println("Invalid: " + s);
             } else {
                 if (Server.roomExists(new Room(p[1]))) {
                         if (p.length == 2) {
@@ -258,9 +258,14 @@ public class User implements Runnable {
             if (s.length() < 140) {
                 
                 _room.spread(_nick + ": " + s);
-                Log.log("Received message" + _nick + " in room" + _room.getNumber() + ". content: " + s);
+                if (_nick.equals("Host")) {
+                    System.out.println(s);
+                } else {
+                    System.out.println("Received message" + _nick + " in room" + _room.getNumber() + ". content: " + s);
+                }
+
             } else {
-                Log.log("Longer message" + _nick);
+                System.out.println("Longer message" + _nick);
             }
         }
     }
@@ -355,7 +360,7 @@ public class User implements Runnable {
                 
                         submit("Offline");
                         _connected = false;
-                        Log.log(_nick + " Inactive");                
+                        System.out.println(_nick + " Inactive");
                     }
                 }
             }

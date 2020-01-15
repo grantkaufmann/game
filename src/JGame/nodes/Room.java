@@ -8,6 +8,7 @@ package JGame.nodes;/*
  *
  * @author Eeshan
  */
+
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 
@@ -40,7 +41,7 @@ public class Room {
                 spread(u.getNick() + " Entered the room " + this._userName);
        
                 updatedUserList();
-                Log.log(u.getNick() + " Entered the room " + this._userName);
+                System.out.println(u.getNick() + " Entered the room " + this._userName);
        
                 u.submit("Room " + this._userName);
                 return "OK";
@@ -59,7 +60,7 @@ public class Room {
                     _users.add(u);
                     spread(u.getNick() + " Entered the room " + this._userName);
                     updatedUserList();
-                    Log.log(u.getNick() + " Entered the room " + this._userName);
+                    System.out.println(u.getNick() + " Entered the room " + this._userName);
        
                     u.submit("Room " + this._userName);
                     return "OK";
@@ -84,7 +85,7 @@ public class Room {
             _users.remove(u);
             spread(u.getNick() + "" + this._userName);
             updatedUserList();
-            Log.log(u.getNick() + "" + this._userName);
+            System.out.println(u.getNick() + "" + this._userName);
         }
     }
     

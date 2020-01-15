@@ -1,4 +1,4 @@
-package JGame;/*
+package Server;/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -9,7 +9,6 @@ package JGame;/*
  * @author Eeshan
  */
 
-import JGame.nodes.Log;
 import JGame.nodes.Room;
 import JGame.nodes.User;
 
@@ -22,33 +21,38 @@ public class Server {
     public static final int P = 80;
     public static ArrayList<Room> roomList;
     public static boolean saveLogs = true;
+    public static boolean running = true;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         if (saveLogs) 
             System.out.println("Logs enabled"); 
         else 
             System.out.println("Logs disabled");
        
         ServerSocket ss = new ServerSocket(P);
-        Log.log("Initialized server " + P);
+        System.out.println("Initialized server " + P);
        
         roomList = new ArrayList<>();
         Room room = new Room("Test");
         addRoom(room);
-       
-        while (true) {
+
+        new Thread(new GameServer()).start();
+
+        while (running) {
+
             Socket socket = ss.accept();
-            Log.log("Connection established" + socket.getInetAddress().getHostAddress());
-       
+            System.out.println("Connection established" + socket.getInetAddress().getHostAddress());
+
+            System.out.println("Running?");
+
             new Thread(new User(socket, room)).start();
-            
         }
     }
     
     public static void addRoom(Room s) {
         if (Server.obtainRoom(s.getNumber()) == null) {
             roomList.add(s);
-            Log.log("Room.java created " + s.getNumber());
+            System.out.println("Room.java created " + s.getNumber());
         }
     }
     
@@ -56,7 +60,7 @@ public class Server {
         if (Server.obtainRoom(s.getNumber()) != null && !s.getNumber().equalsIgnoreCase("Test")) {
             s.shiftRoom(roomList.get(0));
             roomList.remove(s);
-            Log.log("Room.java removed " + s.getNumber());
+            System.out.println("Room.java removed " + s.getNumber());
         }
     }
     
