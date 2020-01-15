@@ -13,9 +13,7 @@ public class Paddle extends Sprite {
         setType("paddle");
         setPosition(x, y);
         setCanvasSize(10, 80);
-    }
 
-    public void initialize() {
         gc.setFill(Color.WHITE);
         gc.fillRect(0, 0, 10, 80);
     }

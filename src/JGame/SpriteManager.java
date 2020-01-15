@@ -81,17 +81,8 @@ public class SpriteManager {
      */
     public void addSprites(Sprite... sprites) {
         for (Sprite sprite : sprites) {
-            System.out.println(JGame.sceneManager.activeLevel);
             JGame.sceneManager.activeLevel.level.getChildren().add(sprite.node);
             GAME_ACTORS.add(sprite);
-        }
-    }
-
-    public void initializeSprites() {
-        List<Sprite> activeSprites = getActiveSprites();
-
-        for (Sprite gameActor : activeSprites) {
-            gameActor.initialize();
         }
     }
 

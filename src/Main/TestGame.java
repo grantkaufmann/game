@@ -25,21 +25,9 @@ public class TestGame extends JGame {
 
 		sceneManager.setScene("pong");
 
-//		spriteManager.listenKeyEvents(true);
-//		spriteManager.listenMouseEvents(true);
-
-		// JGame.Level level1 = new Level1(spriteManager, sceneManager);
-		// JGame.Level level2 = new Level2(spriteManager, sceneManager);
-		// JGame.Level level3 = new Level3(spriteManager, sceneManager);
-
-		// Level flappy = new Flappy(spriteManager, sceneManager, keyPressManager);
-
 		Level Pong = new Pong();
 
-
-
 		stage.show();
-
 
 	}
 }

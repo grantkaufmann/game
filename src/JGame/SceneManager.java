@@ -1,5 +1,6 @@
 package JGame;
 
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -40,27 +41,32 @@ public class SceneManager {
     }
 
     public void setScene(String groupName) {
+        Level level = null;
+
         for (Level group : GAME_GROUPS) {
             if (group.name.equals(groupName)) {
-                Scene scene = new Scene(group.level, 800, 600);
-                JGame.setSceneNodes(group.level);
-                JGame.setGameSurface(scene);
-                stage.setScene(scene);
-                activeScene = scene;
-                activeLevel = group;
-                JGame.spriteManager.initializeSprites();
-//                if (game.spriteManager.listenKeyEvents) { game.spriteManager.listenKeyEvents(scene); }
-//                if (game.spriteManager.listenMouseEvents) { game.spriteManager.listenMouseEvents(scene); }
-                scene.addEventHandler(KeyEvent.KEY_RELEASED, (key) -> {
-                    if (key.getCode().toString().equals("P")) {
-                        if (getNextLevel() != null) {
-                            setScene(getNextLevel().name);
-                        } else {
-                            System.out.println("Next level does not exist");
-                        }
-                    }
-                });
+                level = group;
             }
         }
+        
+        if (level == null) {
+            Level newLevel = new Level();
+            newLevel.level = new Group();
+            newLevel.name = groupName;
+            addScenes(newLevel);
+
+            level = newLevel;
+        }
+
+        Scene scene = new Scene(level.level, 800, 600);
+        JGame.setSceneNodes(level.level);
+        JGame.setGameSurface(scene);
+        stage.setScene(scene);
+        activeScene = scene;
+        activeLevel = level;
+        // JGame.spriteManager.initializeSprites();
+        
+        
+        
     }
 }
