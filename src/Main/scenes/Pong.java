@@ -15,24 +15,41 @@ public class Pong extends Level {
         Background background = new Background(null, Color.BLACK);
         JGame.spriteManager.addSprites(background);
 
-        System.out.println("Player number" + JGame.clientManager.getPlayerNumber());
+        // System.out.println("Client Manager: " + JGame.clientManager.getPlayerNumber());
 
-        if (JGame.clientManager.getPlayerNumber() == 1) {
-            Player player = new Player(40, 300 - 40);
-            JGame.spriteManager.addSprites(player);
+        createSprite("player", 40, 300 - 40, null);
+
+//        if (JGame.clientManager.getPlayerNumber() == 1) {
+//            System.out.println("Adding player");
+//
+//        }
+//
+//        if (JGame.clientManager.getPlayerNumber() == 2) {
+//            createSprite("player", 800 - 40, 300 - 40, null);
+//        }
+
+        // createSprite("ball", 100, 100, null);
+    }
+
+    public void createSprite(String type, double x, double y, String uuid) {
+        System.out.println("got here");
+        switch (type) {
+            case "player": {
+                Player player = new Player(x, y, uuid);
+                JGame.spriteManager.addSprites(player);
+                break;
+            }
+            case "ball": {
+                System.out.println("Scene is adding Ball");
+                 ClientBall clientBall = new ClientBall(x, y, uuid);
+                 JGame.spriteManager.addSprites(clientBall);
+                break;
+            }
+            case "paddle": {
+                Paddle paddle = new Paddle(x, y, uuid);
+                JGame.spriteManager.addSprites(paddle);
+                break;
+            }
         }
-
-        if (JGame.clientManager.getPlayerNumber() == 2) {
-            Player player = new Player(800 - 40, 300 - 40);
-            JGame.spriteManager.addSprites(player);
-        }
-
-
-        // Server controlled
-        ClientBall clientBall = new ClientBall(10, Color.WHITE);
-        JGame.spriteManager.registerSprites(clientBall);
-
-//        Paddle paddle = new Paddle(800 - 40, 300 - 40);
-//        JGame.spriteManager.registerSprites(paddle);
     }
 }

@@ -18,14 +18,18 @@ public class TestGame extends JGame {
 		stage.setTitle(getWindowTitle());
 		// stage.initStyle(StageStyle.UNDECORATED);
 
-		sceneManager = new SceneManager(stage, this);
-		spriteManager = new SpriteManager(sceneManager);
 		keyPressManager = new KeyboardManager();
+		sceneManager = new SceneManager(stage, this);
+		sceneManager.setScene("pong");
+		spriteManager = new SpriteManager();
+
 		clientManager = new ClientManager();
 
-		sceneManager.setScene("pong");
+		currentLevel = new Pong();
 
-		Level Pong = new Pong();
+
+
+		// JGame.clientManager.submit("ball", 100, 100, "454353535345345345345");
 
 		stage.show();
 	}

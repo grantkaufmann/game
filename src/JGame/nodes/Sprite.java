@@ -89,7 +89,9 @@ public class Sprite
     }
 
     public void setUuid(String uuid) {
-        this.uuid = uuid;
+        if (uuid != null) {
+            this.uuid = uuid;
+        }
     }
 
     public boolean getActive() {

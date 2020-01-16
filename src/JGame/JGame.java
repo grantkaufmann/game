@@ -31,6 +31,7 @@ public abstract class JGame {
     public static SpriteManager spriteManager;
     public static KeyboardManager keyPressManager;
 	public static ClientManager clientManager;
+	public static Level currentLevel;
 	
     public JGame(final int fps, final String title) {
         framesPerSecond = fps;

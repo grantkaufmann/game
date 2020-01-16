@@ -62,11 +62,11 @@ public class FlappyBird extends Sprite {
         if (keyPressManager.isKeyPressed(KeyCode.R)) {
             reset();
             alive = true;
-            for (int i = 0; i < spriteManager.getSpriteByType("background").size(); i++) {
-                spriteManager.getSpriteByType("background").get(i).reset();
+            for (int i = 0; i < spriteManager.getSpritesByType("background").size(); i++) {
+                spriteManager.getSpritesByType("background").get(i).reset();
             }
-            for (int i = 0; i < spriteManager.getSpriteByType("pipe").size(); i++) {
-                spriteManager.getSpriteByType("pipe").get(i).reset();
+            for (int i = 0; i < spriteManager.getSpritesByType("pipe").size(); i++) {
+                spriteManager.getSpritesByType("pipe").get(i).reset();
             }
         }
     }
@@ -92,11 +92,11 @@ public class FlappyBird extends Sprite {
     public void handleDie() {
         alive = false;
         velocityY = -8;
-        for (int i = 0; i < spriteManager.getSpriteByType("background").size(); i++) {
-            spriteManager.getSpriteByType("background").get(i).velocityX = 0;
+        for (int i = 0; i < spriteManager.getSpritesByType("background").size(); i++) {
+            spriteManager.getSpritesByType("background").get(i).velocityX = 0;
         }
-        for (int i = 0; i < spriteManager.getSpriteByType("pipe").size(); i++) {
-            spriteManager.getSpriteByType("pipe").get(i).velocityX = 0;
+        for (int i = 0; i < spriteManager.getSpritesByType("pipe").size(); i++) {
+            spriteManager.getSpritesByType("pipe").get(i).velocityX = 0;
         }
         setRotation(180);
     }

@@ -10,13 +10,6 @@ import java.util.stream.Collectors;
 
 public class SpriteManager {
 
-    private SceneManager sceneManager;
-
-    public SpriteManager(SceneManager sceneManager) {
-        this.sceneManager = sceneManager;
-    }
-
-
     /** All the sprite objects currently in play */
     private final static List<Sprite> GAME_ACTORS = new ArrayList<Sprite>();
 
@@ -38,47 +31,27 @@ public class SpriteManager {
 
     public void addSprites(Sprite... sprites) {
         for (Sprite sprite : sprites) {
-            JGame.sceneManager.activeLevel.level.getChildren().add( JGame.sceneManager.activeLevel.level.getChildren().size() -1, sprite.node);
+            int index = JGame.sceneManager.activeLevel.group.getChildren().size() -1;
+            System.out.println("Adding " + sprite.getType() + " UUID " + sprite.uuid + " NODE " + sprite.node + " SCENE " + sprite.node.getParent());
+            System.out.println(JGame.sceneManager.activeLevel.group);
+            System.out.println(JGame.sceneManager.activeLevel.group.getChildren().size());
+            JGame.sceneManager.activeLevel.group.getChildren().add(index, sprite.node);
             GAME_ACTORS.add(sprite);
         }
     }
 
-    public void addSpriteByType(String type, double x, double y) {
-        for (Sprite sprite : GAME_ACTORS) {
-            if (sprite.isType(type)) {
-
-                System.out.println("Adding" + type);
-                int index = JGame.sceneManager.activeLevel.level.getChildren().size() -1;
-
-                Sprite newSprite = sprite.newInstance();
-
-                System.out.println("Node " + newSprite.node + " - old sprite is " + sprite.node);
-                System.out.println("Now " + JGame.sceneManager.activeLevel.level.getChildren().size());
-
-                JGame.sceneManager.activeLevel.level.getChildren().add(newSprite.node);
-            }
-        }
-    }
-
-    public void registerSprites(Sprite... sprites) {
-        GAME_ACTORS.addAll(Arrays.asList(sprites));
+    public void addSpriteByType(String type, double x, double y, String uuid) {
+        JGame.currentLevel.createSprite(type, x, y, uuid);
     }
 
     public void handlePacket(String type, String x, String y, String uuid) {
         System.out.println("Got a packet");
         // System.out.println("x: " + Float.parseFloat(x) + " y: " + Float.parseFloat(y) );
 
-        Sprite foundGameActor = null;
-
-        for (Sprite gameActor : getSpriteByType(type)) {
-            System.out.println("Found an actor");
-            foundGameActor = gameActor;
-        }
+        Sprite foundGameActor = getSpriteByUUID(uuid);
 
         if (foundGameActor == null) {
-            System.out.println("Adding SPRITE " + type);
-            // addSpriteByType(type, Double.parseDouble(x), Double.parseDouble(y));
-            addSpriteByType("ball", 100, 100);
+            addSpriteByType(type, Double.parseDouble(x), Double.parseDouble(y), uuid);
         } else {
             System.out.println("Updating " + type + " x: " + x + " y: " + y);
             if (Double.parseDouble(x) != 0.0) {
@@ -118,7 +91,20 @@ public class SpriteManager {
         }
     }
 
-    public List<Sprite> getSpriteByType(String type) {
+    public Sprite getSpriteByUUID(String uuid) {
+        List<Sprite> activeSprites = getActiveSprites();
+        Sprite foundSprite = null;
+
+        for (Sprite sprite : activeSprites) {
+            if (sprite.uuid.equals(uuid)) {
+                foundSprite = sprite;
+            }
+        }
+
+        return foundSprite;
+    }
+
+    public List<Sprite> getSpritesByType(String type) {
         List<Sprite> activeSprites = getActiveSprites();
 
         List<Sprite> sprites = new ArrayList<>(Collections.emptyList());
@@ -148,15 +134,6 @@ public class SpriteManager {
     }
 
     public void handleUpdate() {
-
-
-
-//        for (Sprite gameActor : getSpriteByType("paddle")) {
-//            System.out.println("Found an actor");
-//            // gameActor.setPosition(100, gameActor.positionY += 1);
-//            gameActor.positionY += 1;
-//        }
-
         try {
             List<Sprite> activeSprites = getActiveSprites();
             for (Sprite gameActor : activeSprites) {

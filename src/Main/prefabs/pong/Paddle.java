@@ -9,36 +9,14 @@ public class Paddle extends Sprite {
 
     private int speed = 5;
 
-    public Paddle(double x, double y) {
+    public Paddle(double x, double y, String uuid) {
         setType("paddle");
+        setUuid(uuid);
         setPosition(x, y);
         setCanvasSize(10, 80);
 
         gc.setFill(Color.WHITE);
         gc.fillRect(0, 0, 10, 80);
-    }
-
-    public Paddle newInstance(double x, double y) {
-        Paddle paddle = new Paddle(x, y);
-        return paddle;
-    }
-
-    public void handleUpdate() {
-
-        node.setTranslateX(positionX += velocityX);
-        node.setTranslateY(positionY += velocityY);
-
-        if (JGame.keyPressManager.isKeyPressed(KeyCode.P)) {
-            JGame.clientManager.submit("player", 100, positionY, uuid);
-            velocityY = -speed;
-        }
-        else if (JGame.keyPressManager.isKeyPressed(KeyCode.L)) {
-            JGame.clientManager.submit("player", 100, positionY, uuid);
-            velocityY = speed;}
-        else 																		{
-            velocityY = 0;
-        }
-
     }
 
     public void handleRender() {

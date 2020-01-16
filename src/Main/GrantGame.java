@@ -12,15 +12,15 @@ public class GrantGame extends JGame {
 
 	@Override
 	public void initialize(Stage stage) {
-		stage.setTitle(getWindowTitle());
-		sceneManager = new SceneManager(stage, this);
-		spriteManager = new SpriteManager(sceneManager);
-		keyPressManager = new KeyboardManager();
-//		spriteManager.listenKeyEvents(true);
-//		spriteManager.listenMouseEvents(true);
-		Level glevel = new GLevel(spriteManager, sceneManager);
-		sceneManager.setScene("glevel");
-		stage.show();
+//		stage.setTitle(getWindowTitle());
+//		sceneManager = new SceneManager(stage, this);
+//		spriteManager = new SpriteManager(sceneManager);
+//		keyPressManager = new KeyboardManager();
+////		spriteManager.listenKeyEvents(true);
+////		spriteManager.listenMouseEvents(true);
+//		Level glevel = new GLevel(spriteManager, sceneManager);
+//		sceneManager.setScene("glevel");
+//		stage.show();
 	}
 }
 

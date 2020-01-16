@@ -59,7 +59,7 @@ public class GameServer implements Runnable {
                 // tick and print fps
                 long lastTick = System.nanoTime();
                 timer.tick();
-                System.out.println(timer.getFPS());
+                // System.out.println(timer.getFPS());
 
 
 //                ballX += velocity;

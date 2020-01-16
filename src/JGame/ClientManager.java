@@ -41,6 +41,7 @@ public class ClientManager {
     }
 
     public void submit(String type, double newX, double newY, String uuid) {
+        System.out.println("Submitting: " + type + " " + newX + " " + newY + " " + uuid);
         net.submit(type + " " + newX + " " + newY + " " + uuid + " \n");
     }
 
@@ -73,6 +74,7 @@ public class ClientManager {
     public void handlePacket(String packet) {
         System.out.println(packet);
         if (packet.contains(":") && !packet.startsWith(nick)) {
+        // if (packet.contains(":")) {
             // System.out.println(packet);
             String[] splitter = packet.split(" ");
             String type = splitter[1];

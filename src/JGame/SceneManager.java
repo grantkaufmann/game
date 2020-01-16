@@ -50,22 +50,20 @@ public class SceneManager {
         
         if (level == null) {
             Level newLevel = new Level();
-            newLevel.level = new Group();
+            newLevel.group = new Group();
             newLevel.name = groupName;
             addScenes(newLevel);
 
             level = newLevel;
         }
 
-        Scene scene = new Scene(level.level, 800, 600);
-        JGame.setSceneNodes(level.level);
+        Scene scene = new Scene(level.group, 800, 600);
+        JGame.setSceneNodes(level.group);
         JGame.setGameSurface(scene);
         stage.setScene(scene);
         activeScene = scene;
+        System.out.println("Setting active level");
         activeLevel = level;
         // JGame.spriteManager.initializeSprites();
-        
-        
-        
     }
 }
