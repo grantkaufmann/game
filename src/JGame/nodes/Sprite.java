@@ -224,9 +224,12 @@ public class Sprite
 
     }
 
-    public void initialize() {}
+    public void handleUpdate() {
+        node.setTranslateX(positionX += velocityX);
+        node.setTranslateY(positionY += velocityY);
+    }
 
-    public void handleUpdate() {}
+    public Sprite newInstance() { return null; }
 
     public void handleRender() {}
 

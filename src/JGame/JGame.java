@@ -4,6 +4,7 @@ import com.sun.javafx.perf.PerformanceTracker;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -50,7 +51,8 @@ public abstract class JGame {
 							String.format("Averate FPS: %.3f \n", tracker.getAverageFPS()) +
 							String.format("Instant FPS rate: %.3f \n", tracker.getInstantFPS()) +
 							String.format("Rendered Objects: %s \n", spriteManager.getActiveSprites().size()) +
-							String.format("Players: %s", clientManager.getConnectedUsers().size())
+							String.format("Players: %s \n", clientManager.getConnectedUsers().size()) +
+							String.format("Player #: %s", clientManager.getPlayerNumber())
 					);
 				}
 				updateSprites();
@@ -150,4 +152,11 @@ public abstract class JGame {
         tracker.resetAverageFPS();
         return fps;
     }
+
+    public static void exit() {
+		System.out.println("Exiting");
+		JGame.clientManager.submit("EXIT");
+		Platform.exit();
+		System.exit(0);
+	}
 }

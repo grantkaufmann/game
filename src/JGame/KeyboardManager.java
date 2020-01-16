@@ -18,10 +18,7 @@ public class KeyboardManager {
 			KeyCode k = key.getCode();
 
 			if (key.getCode().getName().equals("Esc")) {
-				System.out.println("Exiting");
-				JGame.clientManager.submit("EXIT");
-				Platform.exit();
-				System.exit(0);
+				JGame.exit();
 			}
 
 			if (keyState.containsKey(k)) {

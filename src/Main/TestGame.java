@@ -16,7 +16,7 @@ public class TestGame extends JGame {
 	@Override
 	public void initialize(Stage stage) {
 		stage.setTitle(getWindowTitle());
-		stage.initStyle(StageStyle.UNDECORATED);
+		// stage.initStyle(StageStyle.UNDECORATED);
 
 		sceneManager = new SceneManager(stage, this);
 		spriteManager = new SpriteManager(sceneManager);

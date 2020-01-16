@@ -11,8 +11,9 @@ public class ClientBall extends Sprite {
         gc.fillRect(0, 0, radius * 2, radius * 2);
     }
 
-    public void handleUpdate() {
-
+    public ClientBall newInstance(double radius, Color fill) {
+        ClientBall clientBall = new ClientBall(10, Color.BLUE);
+        return clientBall;
     }
 
     public void handleRender() {

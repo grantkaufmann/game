@@ -62,9 +62,9 @@ public class GameServer implements Runnable {
                 System.out.println(timer.getFPS());
 
 
-                ballX += velocity;
-                ballY += velocity;
-                submit("ball", ballX, ballY, uuid);
+//                ballX += velocity;
+//                ballY += velocity;
+//                submit("ball", ballX, ballY, uuid);
 
                 // sleep
                 long wake = lastTick + sleep;

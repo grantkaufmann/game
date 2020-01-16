@@ -3,6 +3,8 @@ package JGame;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import JGame.nodes.Sprite;
+import javafx.scene.paint.Color;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -44,9 +46,16 @@ public class SpriteManager {
     public void addSpriteByType(String type, double x, double y) {
         for (Sprite sprite : GAME_ACTORS) {
             if (sprite.isType(type)) {
-                sprite.positionX = x;
-                sprite.positionY = y;
-                JGame.sceneManager.activeLevel.level.getChildren().add( JGame.sceneManager.activeLevel.level.getChildren().size() -1, sprite.node);
+
+                System.out.println("Adding" + type);
+                int index = JGame.sceneManager.activeLevel.level.getChildren().size() -1;
+
+                Sprite newSprite = sprite.newInstance();
+
+                System.out.println("Node " + newSprite.node + " - old sprite is " + sprite.node);
+                System.out.println("Now " + JGame.sceneManager.activeLevel.level.getChildren().size());
+
+                JGame.sceneManager.activeLevel.level.getChildren().add(newSprite.node);
             }
         }
     }
@@ -56,19 +65,28 @@ public class SpriteManager {
     }
 
     public void handlePacket(String type, String x, String y, String uuid) {
+        System.out.println("Got a packet");
         // System.out.println("x: " + Float.parseFloat(x) + " y: " + Float.parseFloat(y) );
 
         Sprite foundGameActor = null;
 
         for (Sprite gameActor : getSpriteByType(type)) {
+            System.out.println("Found an actor");
             foundGameActor = gameActor;
         }
 
         if (foundGameActor == null) {
-            System.out.println("Adding SPRITE");
-            addSpriteByType(type, 0, 0);
+            System.out.println("Adding SPRITE " + type);
+            // addSpriteByType(type, Double.parseDouble(x), Double.parseDouble(y));
+            addSpriteByType("ball", 100, 100);
         } else {
-            foundGameActor.setPosition(Double.parseDouble(x), Double.parseDouble(y));
+            System.out.println("Updating " + type + " x: " + x + " y: " + y);
+            if (Double.parseDouble(x) != 0.0) {
+                foundGameActor.positionX = Double.parseDouble(x);
+            }
+            if (Double.parseDouble(y) != 0.0) {
+                foundGameActor.positionY = Double.parseDouble(y);
+            }
         }
 
     }
@@ -130,6 +148,15 @@ public class SpriteManager {
     }
 
     public void handleUpdate() {
+
+
+
+//        for (Sprite gameActor : getSpriteByType("paddle")) {
+//            System.out.println("Found an actor");
+//            // gameActor.setPosition(100, gameActor.positionY += 1);
+//            gameActor.positionY += 1;
+//        }
+
         try {
             List<Sprite> activeSprites = getActiveSprites();
             for (Sprite gameActor : activeSprites) {

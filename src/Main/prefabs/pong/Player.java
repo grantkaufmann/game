@@ -5,12 +5,12 @@ import JGame.nodes.Sprite;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 
-public class Paddle extends Sprite {
+public class Player extends Sprite {
 
     private int speed = 5;
 
-    public Paddle(double x, double y) {
-        setType("paddle");
+    public Player(double x, double y) {
+        setType("player");
         setPosition(x, y);
         setCanvasSize(10, 80);
 
@@ -18,30 +18,23 @@ public class Paddle extends Sprite {
         gc.fillRect(0, 0, 10, 80);
     }
 
-    public Paddle newInstance(double x, double y) {
-        Paddle paddle = new Paddle(x, y);
-        return paddle;
-    }
-
     public void handleUpdate() {
-
         node.setTranslateX(positionX += velocityX);
         node.setTranslateY(positionY += velocityY);
 
-        if (JGame.keyPressManager.isKeyPressed(KeyCode.P)) {
-            JGame.clientManager.submit("player", 100, positionY, uuid);
+        if (JGame.keyPressManager.isKeyPressed(KeyCode.W)) {
+            JGame.clientManager.submit("ball", 100, positionY, uuid);
             velocityY = -speed;
         }
-        else if (JGame.keyPressManager.isKeyPressed(KeyCode.L)) {
-            JGame.clientManager.submit("player", 100, positionY, uuid);
+        else if (JGame.keyPressManager.isKeyPressed(KeyCode.S)) {
+            JGame.clientManager.submit("ball", 100, positionY, uuid);
             velocityY = speed;}
         else 																		{
             velocityY = 0;
         }
-
     }
 
     public void handleRender() {
-
+        // System.out.println(JGame.getSceneNodes().getChildren().size());
     }
 }
