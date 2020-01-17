@@ -1,14 +1,13 @@
 package Server;
 
-import JGame.JGame;
 import JGame.nodes.CreateRequest;
 import JGame.nodes.Room;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import java.util.UUID;
 
 public class GameServer implements Runnable {
@@ -18,12 +17,24 @@ public class GameServer implements Runnable {
     private BufferedWriter _leave;
     private NetworkManager net;
 
+    private Properties prop = new Properties();
+    private InputStream config;
+
     private HashMap<String, CreateRequest> lastKnownPos = new HashMap<String, CreateRequest>();
 
     public GameServer() {
+
+        try {
+            config = new FileInputStream("src/game.config");
+            prop.load(config);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+
+
         net = NetworkManager.getInstance();
         try {
-            net.setServer("localhost", 80);
+            net.setServer(prop.getProperty("host"), 80);
             net.setInterface(this);
             net.submit("NICK " + "Host");
 
@@ -84,9 +95,7 @@ public class GameServer implements Runnable {
     }
 
     public void addLastKnownPositions(String s) {
-        System.out.println("Got here, now here is S: " + s);
         if (s.contains(":")) {
-            System.out.println("ADDING" + s);
             String[] splitter = s.split(" ");
             String type = splitter[1];
             String posX = splitter[2];
@@ -101,17 +110,16 @@ public class GameServer implements Runnable {
         for (Map.Entry i : lastKnownPos.entrySet()) {
             // System.out.println("Key: "+me.getKey() + " & Value: " + me.getValue());
             CreateRequest create = (CreateRequest) i.getValue();
-
             submit(create.type, create.x, create.y, create.uuid, true);
         }
 
         if (!lastKnownPos.containsKey(uuid)) {
             System.out.println(uuid + " is player #" + playerNumber);
-            double newX = 40;
+            double newX = Double.parseDouble(prop.getProperty("startX"));
             if (playerNumber == 2) {
                 newX = 800 - 40;
             }
-            submit("paddle", newX, 300 - 40, uuid, lastKnownPos.containsKey(uuid));
+            submit(prop.getProperty("playerType"), newX, Double.parseDouble(prop.getProperty("startY")), uuid, lastKnownPos.containsKey(uuid));
         }
     }
 }

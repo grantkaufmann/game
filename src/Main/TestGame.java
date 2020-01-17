@@ -19,7 +19,7 @@ public class TestGame extends JGame {
 		sceneManager.setScene("pong");
 		spriteManager = new SpriteManager();
 
-		networkManager = new NetworkManager("localhost", 80);
+		networkManager = new NetworkManager();
 
 		currentLevel = new Pong();
 

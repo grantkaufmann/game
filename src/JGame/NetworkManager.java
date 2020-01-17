@@ -6,6 +6,7 @@ import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -15,15 +16,28 @@ public class NetworkManager {
     private BufferedReader enter;
     private BufferedWriter leave;
 
+    private Properties prop = new Properties();
+    private InputStream config;
+
     // public String nick = UUID.randomUUID().toString();
 
-    public String nick = "Grant";
+    public String nick;
 
     public List<User> users = new ArrayList<User>();
 
-    public NetworkManager(String ip, int port) {
+    public NetworkManager() {
+
         try {
-            setServer(ip, port);
+            config = new FileInputStream("src/game.config");
+            prop.load(config);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+
+        nick = prop.getProperty("nick");
+
+        try {
+            setServer(prop.getProperty("host"), 80);
             submit("NICK " + nick);
 
             new Thread(new Runnable() {
