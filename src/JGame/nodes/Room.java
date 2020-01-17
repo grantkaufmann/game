@@ -9,6 +9,9 @@ package JGame.nodes;/*
  * @author Eeshan
  */
 
+import Server.GameServer;
+import Server.Server;
+
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 
@@ -17,19 +20,22 @@ public class Room {
     private String _userName;
     private String _password;
     private ArrayList<User> _bans;
+    public GameServer gameServer;
     
-    public Room(String number) {        //Creates a Room without a password
+    public Room(String number, GameServer gameServer) {        //Creates a Room without a password
         this._userName = number;
         this._password = "";
         this._users = new ArrayList<>();
         this._bans = new ArrayList<>();
+        this.gameServer = gameServer;
     }
     
-    public Room(String number, String pw) {     //Creates a Room without a password
+    public Room(String number, String pw, GameServer gameServer) {     //Creates a Room without a password
         this._userName = number;
         this._password = pw;
         this._users = new ArrayList<>();
         this._bans = new ArrayList<>();
+        this.gameServer = gameServer;
     }
     
     public String enter(User u) {       //Enter user without password set
@@ -44,6 +50,11 @@ public class Room {
                 System.out.println(u.getNick() + " Entered the room " + this._userName);
        
                 u.submit("Room " + this._userName);
+                // u.submit(":D");
+//                System.out.println("SERVER " + server);
+                if (!u.getNick().equals("Host")) {
+                   gameServer.sendLastKnownPositions();
+                }
                 return "OK";
         } 
         else {

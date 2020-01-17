@@ -22,21 +22,23 @@ public class Server {
     public static ArrayList<Room> roomList;
     public static boolean saveLogs = true;
     public static boolean running = true;
+    public static Server server;
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        if (saveLogs) 
-            System.out.println("Logs enabled"); 
-        else 
-            System.out.println("Logs disabled");
-       
+    public static void main(String[] args) throws IOException {
+        server = new Server();
+    }
+
+    public Server() throws IOException {
         ServerSocket ss = new ServerSocket(P);
         System.out.println("Initialized server " + P);
-       
+
         roomList = new ArrayList<>();
-        Room room = new Room("Test");
+        GameServer gameServer = new GameServer();
+
+        Room room = new Room("Test", gameServer);
         addRoom(room);
 
-        new Thread(new GameServer()).start();
+        new Thread(gameServer).start();
 
         while (running) {
 
@@ -45,7 +47,7 @@ public class Server {
 
             System.out.println("Running?");
 
-            new Thread(new User(socket, room)).start();
+            new Thread(new User(socket, room, gameServer)).start();
         }
     }
     

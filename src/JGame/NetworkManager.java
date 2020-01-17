@@ -15,7 +15,9 @@ public class NetworkManager {
     private BufferedReader enter;
     private BufferedWriter leave;
 
-    public String nick = UUID.randomUUID().toString();
+    // public String nick = UUID.randomUUID().toString();
+
+    public String nick = "Chuck";
 
     public List<User> users = new ArrayList<User>();
 

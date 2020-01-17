@@ -11,6 +11,7 @@ package JGame.nodes;/*
 
 
 import Server.Server;
+import Server.GameServer;
 
 import java.io.*;
 import java.net.Socket;
@@ -29,13 +30,15 @@ public class User implements Runnable {
     private long _ping;
     private Room _room;
     private long _lastBeat;
+    private GameServer gameServer;
 
     public User(String nick) {
         this._nick = nick;
     }
     
-    public User(Socket s, Room room) throws IOException {
+    public User(Socket s, Room room, GameServer gameServer) throws IOException {
         this._room = room;
+        this.gameServer = gameServer;
         this._loginTime = System.currentTimeMillis();
         this._IP = s.getInetAddress().getHostAddress();
         this._ping = 0;
@@ -177,14 +180,14 @@ public class User implements Runnable {
                 System.out.println("Invalid: " + s);
             } else {
                 
-                if (!Server.roomExists(new Room(p[1]))) {
+                if (!Server.roomExists(new Room(p[1], gameServer))) {
                     Room sl = null;
                 
                     if (p.length == 2) {
                 
-                        sl = new Room(p[1]);
+                        sl = new Room(p[1], gameServer);
                     } else if (p.length == 3) { 
-                        sl = new Room(p[1], p[2]);
+                        sl = new Room(p[1], p[2], gameServer);
                     }
                     if (sl != null) {
                         Server.addRoom(sl);
@@ -208,7 +211,7 @@ public class User implements Runnable {
                 submit("Invalid syntax");
                 System.out.println("Invalid: " + s);
             } else {
-                if (Server.roomExists(new Room(p[1]))) {
+                if (Server.roomExists(new Room(p[1], gameServer))) {
                         if (p.length == 2) {
                             Room sl = Server.obtainRoom(p[1]);
                 
@@ -254,7 +257,10 @@ public class User implements Runnable {
             submit("===========================");
         }
  
-        else { 
+        else {
+            
+            gameServer.addLastKnownPositions(_nick + ": " + s);
+
             if (s.length() < 140) {
                 
                 _room.spread(_nick + ": " + s);
