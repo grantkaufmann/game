@@ -55,11 +55,17 @@ public abstract class JGame {
 					debugLabel.setText(
 							String.format("Averate FPS: %.3f \n", tracker.getAverageFPS()) +
 							String.format("Instant FPS rate: %.3f \n", tracker.getInstantFPS()) +
-							String.format("Rendered Objects: %s \n", spriteManager.getActiveSprites().size()) +
-							String.format("Players: %s \n", networkManager.getConnectedUsers().size()) +
-							String.format("Player #: %s", networkManager.getPlayerNumber())
+							String.format("Rendered Objects: %s \n", spriteManager.getActiveSprites().size())
 					);
 				}
+				if (networkManager != null) {
+					debugLabel.setText(
+						debugLabel.getText() +
+						String.format("Players: %s \n", networkManager.getConnectedUsers().size()) +
+						String.format("Player #: %s", networkManager.getPlayerNumber())
+					);
+				}
+
 				updateSprites();
 				// check for collision
 				checkCollisions();
