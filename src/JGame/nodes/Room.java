@@ -53,7 +53,7 @@ public class Room {
                 // u.submit(":D");
 //                System.out.println("SERVER " + server);
                 if (!u.getNick().equals("Host")) {
-                   gameServer.sendLastKnownPositions();
+                    gameServer.sendLastKnownPositions(u.getNick(), _users.size() - 1);
                 }
                 return "OK";
         } 

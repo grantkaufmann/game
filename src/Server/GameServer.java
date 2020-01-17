@@ -41,8 +41,8 @@ public class GameServer implements Runnable {
         }
     }
 
-    public void submit(String type, double newX, double newY, String uuid) {
-        net.submit(type + " " + newX + " " + newY + " " + uuid + " \n");
+    public void submit(String type, double newX, double newY, String uuid, boolean hasLastKnownPosition) {
+        net.submit(type + " " + newX + " " + newY + " " + uuid + " " + hasLastKnownPosition + " \n");
     }
 
     public void run() {
@@ -97,11 +97,21 @@ public class GameServer implements Runnable {
         }
     }
 
-    public void sendLastKnownPositions() {
+    public void sendLastKnownPositions(String uuid, int playerNumber) {
         for (Map.Entry i : lastKnownPos.entrySet()) {
             // System.out.println("Key: "+me.getKey() + " & Value: " + me.getValue());
             CreateRequest create = (CreateRequest) i.getValue();
-            submit(create.type, create.x, create.y, create.uuid);
+
+            submit(create.type, create.x, create.y, create.uuid, true);
+        }
+
+        if (!lastKnownPos.containsKey(uuid)) {
+            System.out.println(uuid + " is player #" + playerNumber);
+            double newX = 40;
+            if (playerNumber == 2) {
+                newX = 800 - 40;
+            }
+            submit("paddle", newX, 300 - 40, uuid, lastKnownPos.containsKey(uuid));
         }
     }
 }

@@ -17,7 +17,7 @@ public class NetworkManager {
 
     // public String nick = UUID.randomUUID().toString();
 
-    public String nick = "Chuck";
+    public String nick = "Grant";
 
     public List<User> users = new ArrayList<User>();
 
@@ -153,6 +153,10 @@ public class NetworkManager {
             String posX = splitter[2];
             String posY = splitter[3];
             String uuid = splitter[4];
+
+            if (uuid.equals(nick)) {
+                type = "player";
+            }
 
             JGame.spriteManager.handlePacket(type, posX, posY, uuid);
         }

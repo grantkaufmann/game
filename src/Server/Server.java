@@ -45,8 +45,6 @@ public class Server {
             Socket socket = ss.accept();
             System.out.println("Connection established" + socket.getInetAddress().getHostAddress());
 
-            System.out.println("Running?");
-
             new Thread(new User(socket, room, gameServer)).start();
         }
     }
