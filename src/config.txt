@@ -1,4 +1,4 @@
-nick=TestGuy101
+nick=Justin
 host=localhost
 playerType=paddle
 startX=40

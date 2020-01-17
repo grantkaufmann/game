@@ -2,6 +2,7 @@ package Server;
 
 import JGame.nodes.CreateRequest;
 import JGame.nodes.Room;
+import Server.prefabs.Ball;
 
 import java.io.*;
 import java.net.Socket;
@@ -52,17 +53,13 @@ public class GameServer implements Runnable {
         }
     }
 
-    public void submit(String type, double newX, double newY, String uuid, boolean hasLastKnownPosition) {
-        net.submit(type + " " + newX + " " + newY + " " + uuid + " " + hasLastKnownPosition + " \n");
+    public void submit(String type, double newX, double newY, String uuid) {
+        net.submit(type + " " + newX + " " + newY + " " + uuid + " \n");
     }
 
     public void run() {
-        double ballX = 50;
-        double ballY = 50;
 
-        double velocity = 0.2;
-
-        String uuid = UUID.randomUUID().toString();
+        Ball ball = new Ball(50, 50);
 
         double desiredFPS = 60d;
         long sleep = (long) (ServerGameTimer.ONE_SECOND / desiredFPS);
@@ -77,10 +74,9 @@ public class GameServer implements Runnable {
                 timer.tick();
                 // System.out.println(timer.getFPS());
 
+                ball.handleUpdate();
 
-//                ballX += velocity;
-//                ballY += velocity;
-//                submit("ball", ballX, ballY, uuid);
+                submit("ball", ball.positionX, ball.positionY, ball.uuid);
 
                 // sleep
                 long wake = lastTick + sleep;
@@ -110,7 +106,7 @@ public class GameServer implements Runnable {
         for (Map.Entry i : lastKnownPos.entrySet()) {
             // System.out.println("Key: "+me.getKey() + " & Value: " + me.getValue());
             CreateRequest create = (CreateRequest) i.getValue();
-            submit(create.type, create.x, create.y, create.uuid, true);
+            submit(create.type, create.x, create.y, create.uuid);
         }
 
         if (!lastKnownPos.containsKey(uuid)) {
@@ -119,7 +115,7 @@ public class GameServer implements Runnable {
             if (playerNumber == 2) {
                 newX = 800 - 40;
             }
-            submit(prop.getProperty("playerType"), newX, Double.parseDouble(prop.getProperty("startY")), uuid, lastKnownPos.containsKey(uuid));
+            submit(prop.getProperty("playerType"), newX, Double.parseDouble(prop.getProperty("startY")), uuid);
         }
     }
 }
