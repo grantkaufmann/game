@@ -1,5 +1,7 @@
 package JGame;
 
+import JGame.nodes.CreateRequest;
+import JGame.nodes.User;
 import com.sun.javafx.perf.PerformanceTracker;
 
 import javafx.animation.KeyFrame;
@@ -16,11 +18,16 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class JGame {
 	private static Timeline gameLoop;
 	private final int framesPerSecond;
 	private final String windowTitle;
 	private boolean debug = false;
+
+	public static List<CreateRequest> createQueue = new ArrayList<CreateRequest>();
 	Label debugLabel = new Label("");
 	
 	private static PerformanceTracker tracker;

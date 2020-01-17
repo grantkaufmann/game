@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class ClientManager {
 
     public NetworkManager net;
-    public String nick = "Player" + new Random().nextInt(10);
+    public String nick = UUID.randomUUID().toString();
 
     public List<User> users = new ArrayList<User>();
 
@@ -41,7 +41,6 @@ public class ClientManager {
     }
 
     public void submit(String type, double newX, double newY, String uuid) {
-        System.out.println("Submitting: " + type + " " + newX + " " + newY + " " + uuid);
         net.submit(type + " " + newX + " " + newY + " " + uuid + " \n");
     }
 
@@ -72,8 +71,9 @@ public class ClientManager {
     }
 
     public void handlePacket(String packet) {
-        System.out.println(packet);
+
         if (packet.contains(":") && !packet.startsWith(nick)) {
+            System.out.println(packet);
         // if (packet.contains(":")) {
             // System.out.println(packet);
             String[] splitter = packet.split(" ");

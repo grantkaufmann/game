@@ -1,5 +1,7 @@
 package JGame;
 
+import JGame.nodes.CreateRequest;
+import Main.prefabs.pong.ClientBall;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import JGame.nodes.Sprite;
@@ -32,9 +34,6 @@ public class SpriteManager {
     public void addSprites(Sprite... sprites) {
         for (Sprite sprite : sprites) {
             int index = JGame.sceneManager.activeLevel.group.getChildren().size() -1;
-            System.out.println("Adding " + sprite.getType() + " UUID " + sprite.uuid + " NODE " + sprite.node + " SCENE " + sprite.node.getParent());
-            System.out.println(JGame.sceneManager.activeLevel.group);
-            System.out.println(JGame.sceneManager.activeLevel.group.getChildren().size());
             JGame.sceneManager.activeLevel.group.getChildren().add(index, sprite.node);
             GAME_ACTORS.add(sprite);
         }
@@ -51,7 +50,8 @@ public class SpriteManager {
         Sprite foundGameActor = getSpriteByUUID(uuid);
 
         if (foundGameActor == null) {
-            addSpriteByType(type, Double.parseDouble(x), Double.parseDouble(y), uuid);
+            CreateRequest create = new CreateRequest(type,  Double.parseDouble(x), Double.parseDouble(y), uuid);
+            JGame.createQueue.add(create);
         } else {
             System.out.println("Updating " + type + " x: " + x + " y: " + y);
             if (Double.parseDouble(x) != 0.0) {
@@ -134,6 +134,15 @@ public class SpriteManager {
     }
 
     public void handleUpdate() {
+
+        for (CreateRequest create : JGame.createQueue) {
+            Sprite found = getSpriteByUUID(create.uuid);
+            if (found == null) {
+                addSpriteByType(create.type, create.x, create.y, create.uuid);
+            }
+            JGame.createQueue.remove(create);
+        }
+
         try {
             List<Sprite> activeSprites = getActiveSprites();
             for (Sprite gameActor : activeSprites) {

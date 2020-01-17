@@ -35,7 +35,11 @@ public class Pong extends Level {
         System.out.println("got here");
         switch (type) {
             case "player": {
-                Player player = new Player(x, y, uuid);
+                double newX = 40;
+                if (JGame.clientManager.getPlayerNumber() == 2) {
+                    newX = 800 - 40;
+                }
+                Player player = new Player(newX, y, JGame.clientManager.nick);
                 JGame.spriteManager.addSprites(player);
                 break;
             }
@@ -46,7 +50,11 @@ public class Pong extends Level {
                 break;
             }
             case "paddle": {
-                Paddle paddle = new Paddle(x, y, uuid);
+                double newX = 800 - 40;
+                if (JGame.clientManager.getPlayerNumber() == 2) {
+                    newX = 40;
+                }
+                Paddle paddle = new Paddle(newX, y, uuid);
                 JGame.spriteManager.addSprites(paddle);
                 break;
             }
