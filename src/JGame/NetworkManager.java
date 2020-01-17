@@ -28,7 +28,7 @@ public class NetworkManager {
     public NetworkManager() {
 
         try {
-            config = new FileInputStream("src/game.config");
+            config = new FileInputStream("src/config.txt");
             prop.load(config);
         } catch(IOException e) {
             e.printStackTrace();
