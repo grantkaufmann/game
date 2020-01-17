@@ -1,11 +1,7 @@
 package Main;
 import JGame.*;
-import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import Main.scenes.Pong;
-import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 
 public class TestGame extends JGame {
 	
@@ -23,13 +19,13 @@ public class TestGame extends JGame {
 		sceneManager.setScene("pong");
 		spriteManager = new SpriteManager();
 
-		clientManager = new ClientManager();
+		networkManager = new NetworkManager("localhost", 80);
 
 		currentLevel = new Pong();
 
 
 
-		// JGame.clientManager.submit("ball", 100, 100, "454353535345345345345");
+		// JGame.networkManager.submit("ball", 100, 100, "454353535345345345345");
 
 		stage.show();
 	}

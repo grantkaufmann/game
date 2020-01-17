@@ -1,21 +1,18 @@
 package JGame;
 
 import JGame.nodes.CreateRequest;
-import JGame.nodes.User;
 import com.sun.javafx.perf.PerformanceTracker;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -37,7 +34,7 @@ public abstract class JGame {
 	private static Group sceneNodes;
     public static SpriteManager spriteManager;
     public static KeyboardManager keyPressManager;
-	public static ClientManager clientManager;
+	public static NetworkManager networkManager;
 	public static Level currentLevel;
 	
     public JGame(final int fps, final String title) {
@@ -59,8 +56,8 @@ public abstract class JGame {
 							String.format("Averate FPS: %.3f \n", tracker.getAverageFPS()) +
 							String.format("Instant FPS rate: %.3f \n", tracker.getInstantFPS()) +
 							String.format("Rendered Objects: %s \n", spriteManager.getActiveSprites().size()) +
-							String.format("Players: %s \n", clientManager.getConnectedUsers().size()) +
-							String.format("Player #: %s", clientManager.getPlayerNumber())
+							String.format("Players: %s \n", networkManager.getConnectedUsers().size()) +
+							String.format("Player #: %s", networkManager.getPlayerNumber())
 					);
 				}
 				updateSprites();
@@ -163,7 +160,7 @@ public abstract class JGame {
 
     public static void exit() {
 		System.out.println("Exiting");
-		JGame.clientManager.submit("EXIT");
+		JGame.networkManager.submit("EXIT");
 		Platform.exit();
 		System.exit(0);
 	}

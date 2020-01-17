@@ -15,7 +15,6 @@ public class GameServer implements Runnable {
     private NetworkManager net;
 
     public GameServer() throws IOException, InterruptedException {
-        Thread.sleep(3000);
         net = NetworkManager.getInstance();
         try {
             net.setServer("localhost", 80);
@@ -62,9 +61,9 @@ public class GameServer implements Runnable {
                 // System.out.println(timer.getFPS());
 
 
-//                ballX += velocity;
-//                ballY += velocity;
-//                submit("ball", ballX, ballY, uuid);
+                ballX += velocity;
+                ballY += velocity;
+                submit("ball", ballX, ballY, uuid);
 
                 // sleep
                 long wake = lastTick + sleep;

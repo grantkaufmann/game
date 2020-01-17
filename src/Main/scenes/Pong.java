@@ -15,16 +15,16 @@ public class Pong extends Level {
         Background background = new Background(null, Color.BLACK);
         JGame.spriteManager.addSprites(background);
 
-        // System.out.println("Client Manager: " + JGame.clientManager.getPlayerNumber());
+        // System.out.println("Client Manager: " + JGame.networkManager.getPlayerNumber());
 
         createSprite("player", 40, 300 - 40, null);
 
-//        if (JGame.clientManager.getPlayerNumber() == 1) {
+//        if (JGame.networkManager.getPlayerNumber() == 1) {
 //            System.out.println("Adding player");
 //
 //        }
 //
-//        if (JGame.clientManager.getPlayerNumber() == 2) {
+//        if (JGame.networkManager.getPlayerNumber() == 2) {
 //            createSprite("player", 800 - 40, 300 - 40, null);
 //        }
 
@@ -36,10 +36,10 @@ public class Pong extends Level {
         switch (type) {
             case "player": {
                 double newX = 40;
-                if (JGame.clientManager.getPlayerNumber() == 2) {
+                if (JGame.networkManager.getPlayerNumber() == 2) {
                     newX = 800 - 40;
                 }
-                Player player = new Player(newX, y, JGame.clientManager.nick);
+                Player player = new Player(newX, y, JGame.networkManager.nick);
                 JGame.spriteManager.addSprites(player);
                 break;
             }
@@ -51,7 +51,7 @@ public class Pong extends Level {
             }
             case "paddle": {
                 double newX = 800 - 40;
-                if (JGame.clientManager.getPlayerNumber() == 2) {
+                if (JGame.networkManager.getPlayerNumber() == 2) {
                     newX = 40;
                 }
                 Paddle paddle = new Paddle(newX, y, uuid);

@@ -24,11 +24,11 @@ public class Player extends Sprite {
         node.setTranslateY(positionY += velocityY);
 
         if (JGame.keyPressManager.isKeyPressed(KeyCode.W)) {
-            JGame.clientManager.submit("paddle", 0, positionY, uuid);
+            JGame.networkManager.submit("paddle", 0, positionY, uuid);
             velocityY = -speed;
         }
         else if (JGame.keyPressManager.isKeyPressed(KeyCode.S)) {
-            JGame.clientManager.submit("paddle", 0, positionY, uuid);
+            JGame.networkManager.submit("paddle", 0, positionY, uuid);
             velocityY = speed;
         }
         else 																		{
